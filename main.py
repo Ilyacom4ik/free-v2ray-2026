@@ -71,7 +71,7 @@ def main():
 
     os.makedirs('subscriptions', exist_ok=True)
 
-    with open('subscriptions/all.txt', 'w', encoding='utf-8') as f:
+    with open('subscriptions/FreeCFGHub', 'w', encoding='utf-8') as f:
         f.write('\n'.join(unique_configs))
 
     if unique_configs:
