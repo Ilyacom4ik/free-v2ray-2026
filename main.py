@@ -218,7 +218,7 @@ def main():
     # Base64 версия для подписок
     joined = '\n'.join(working_configs)
     b64 = base64.b64encode(joined.encode('utf-8')).decode('utf-8')
-    with open('subscriptions/FreeCFGHub_base64.txt', 'w', encoding='utf-8') as f:
+    with open('subscriptions/all_base64.txt', 'w', encoding='utf-8') as f:
         f.write(b64)
     
     log(f"\n✅ Сохранено {len(working_configs)} рабочих конфигов:", Colors.GREEN)
