@@ -1,64 +1,13 @@
 import requests
 import base64
 import re
-import socket
-import time
 from datetime import datetime
 import os
 
-print("Скрипт запущен!")
+print("START")
 
 def is_valid_config(line):
     return bool(re.match(r'^(vless|vmess|trojan|hysteria2|ss|tuic)://', line.strip()))
-
-def extract_host_port(line):
-    """Извлекает хост и порт из конфига"""
-    # vless://
-    match = re.search(r'vless://[^@]+@([^:]+):(\d+)', line)
-    if match:
-        return match.group(1), int(match.group(2))
-    
-    # vmess:// (base64)
-    if line.startswith('vmess://'):
-        try:
-            b64 = line[8:]
-            b64 += '=' * (4 - len(b64) % 4)
-            decoded = base64.b64decode(b64).decode('utf-8')
-            import json
-            data = json.loads(decoded)
-            return data.get('add', ''), int(data.get('port', 443))
-        except:
-            pass
-    
-    # trojan://
-    match = re.search(r'trojan://[^@]+@([^:]+):(\d+)', line)
-    if match:
-        return match.group(1), int(match.group(2))
-    
-    # hysteria2://
-    match = re.search(r'hysteria2://[^@]+@([^:]+):(\d+)', line)
-    if match:
-        return match.group(1), int(match.group(2))
-    
-    # ss://
-    match = re.search(r'ss://[^@]+@([^:]+):(\d+)', line)
-    if match:
-        return match.group(1), int(match.group(2))
-    
-    return None, None
-
-def test_port(host, port, timeout=2):
-    """Проверяет, открыт ли порт"""
-    if not host:
-        return False
-    try:
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.settimeout(timeout)
-        result = sock.connect_ex((host, port))
-        sock.close()
-        return result == 0
-    except:
-        return False
 
 def fetch_from_url(url):
     configs = []
@@ -94,73 +43,49 @@ def fetch_from_url(url):
     return configs
 
 def main():
-    print("Ищу sources.txt...")
+    print("main started")
     script_dir = os.path.dirname(os.path.abspath(__file__))
     sources_path = os.path.join(script_dir, 'sources.txt')
     
     try:
         with open(sources_path, 'r', encoding='utf-8') as f:
             sources = [line.strip() for line in f if line.strip() and not line.startswith('#')]
-        print(f"Найдено источников: {len(sources)}")
+        print(f"sources loaded: {len(sources)}")
     except FileNotFoundError:
-        print("sources.txt не найден!")
+        print("sources.txt not found")
         return
 
     if not sources:
-        print("Нет источников в sources.txt!")
+        print("no sources")
         return
 
-    # Сбор конфигов
     all_configs = []
     for url in sources:
-        print(f"Собираю из {url}...")
+        print(f"fetch {url}")
         configs = fetch_from_url(url)
-        print(f"  → найдено {len(configs)} конфигов")
+        print(f"  got {len(configs)}")
         all_configs.extend(configs)
 
-    # Убираем дубликаты
     unique_configs = list(dict.fromkeys(all_configs))
-    print(f"Всего уникальных конфигов: {len(unique_configs)}")
-    
-    # Проверяем порты
-    print("\n🔍 Проверяю порты (открыт/закрыт)...")
-    working_configs = []
-    
-    for i, cfg in enumerate(unique_configs):
-        if i % 100 == 0:
-            print(f"  → проверено {i}/{len(unique_configs)}")
-        
-        host, port = extract_host_port(cfg)
-        if host and port:
-            if test_port(host, port):
-                working_configs.append(cfg)
-    
-    print(f"  → проверено {len(unique_configs)} конфигов")
-    print(f"  → рабочих (порт открыт): {len(working_configs)}")
-    
-    # Обрезаем до 500, чтобы не тормозить
-    if len(working_configs) > 500:
-        working_configs = working_configs[:500]
-        print(f"Обрезано до 500 конфигов для скорости")
+    print(f"total unique: {len(unique_configs)}")
 
-    # Сохраняем
     os.makedirs('subscriptions', exist_ok=True)
 
     with open('subscriptions/all.txt', 'w', encoding='utf-8') as f:
-        f.write('\n'.join(working_configs))
+        f.write('\n'.join(unique_configs))
 
-    if working_configs:
-        joined = '\n'.join(working_configs)
+    if unique_configs:
+        joined = '\n'.join(unique_configs)
         b64 = base64.b64encode(joined.encode('utf-8')).decode('utf-8')
         with open('subscriptions/all_base64.txt', 'w', encoding='utf-8') as f:
             f.write(b64)
-        print(f"\n✅ Сохранено {len(working_configs)} рабочих конфигов")
+        print(f"saved {len(unique_configs)} configs")
     else:
         with open('subscriptions/all_base64.txt', 'w') as f:
             f.write('')
-        print("⚠️ Нет рабочих конфигов для сохранения")
+        print("no configs")
 
-    print(f"Обновлено в {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}")
+    print(f"done {datetime.utcnow()}")
 
 if __name__ == '__main__':
     main()
