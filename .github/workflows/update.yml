@@ -1,0 +1,31 @@
+name: Update VPN Configs
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'   # каждые 30 минут (можно */15 для 15 мин, 0 */2 * * * для каждые 2 часа)
+  workflow_dispatch:         # можно запустить вручную из вкладки Actions
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Run collector
+        run: python main.py
+
+      - name: Commit changes if any
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto update configs ${{ github.run_number }} [${{ github.run_id }}]"
+          file_pattern: subscriptions/*
