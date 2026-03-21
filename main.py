@@ -2,29 +2,11 @@ import requests
 import base64
 import re
 from datetime import datetime
-import json
-
-# Словарь для декодирования Happ-ссылок
-# (если у тебя есть реальные ключи для декодирования — добавь их)
-HAPP_DECODER = {
-    # Здесь будут твои ключи для декодирования, если нужны
-}
+import os
 
 def is_valid_config(line):
-    """Проверяет, является ли строка конфигом"""
+    # Проверяет, начинается ли строка с vless://, vmess:// и т.д.
     return bool(re.match(r'^(vless|vmess|trojan|hysteria2|ss|tuic)://', line.strip()))
-
-def decode_happ(url):
-    """Пробует декодировать Happ-ссылку в обычный VLESS"""
-    # Happ-ссылки обычно имеют вид happ://... 
-    # Для их декодирования нужен ключ, который есть у разработчиков Happ
-    # Пока возвращаем None, если не знаем, как декодировать
-    if url.startswith('happ://'):
-        # Здесь можно добавить логику декодирования
-        # Например, через внешний API или локальный ключ
-        # print(f"Найдена Happ-ссылка, пропускаю: {url[:50]}...")
-        return None
-    return url
 
 def fetch_from_url(url):
     configs = []
@@ -36,11 +18,10 @@ def fetch_from_url(url):
         
         text = r.text.strip()
         
-        # Проверяем, не base64 ли это
+        # Пробуем декодировать base64
         if re.match(r'^[A-Za-z0-9+/=]+$', text) and len(text) > 50:
             try:
                 decoded = base64.b64decode(text).decode('utf-8', errors='ignore')
-                # Если декодировалось и содержит ссылки — используем
                 if any(x in decoded for x in ['vless://', 'vmess://', 'trojan://']):
                     lines = decoded.splitlines()
                 else:
@@ -52,17 +33,8 @@ def fetch_from_url(url):
         
         for line in lines:
             cleaned = line.strip()
-            # Пропускаем пустые и комментарии
             if not cleaned or cleaned.startswith('#'):
                 continue
-            
-            # Проверяем на Happ
-            if cleaned.startswith('happ://'):
-                # Если не умеем декодировать — пропускаем
-                # В будущем можно добавить декодер
-                continue
-            
-            # Обычные конфиги
             if is_valid_config(cleaned):
                 configs.append(cleaned)
                 
@@ -71,11 +43,16 @@ def fetch_from_url(url):
     return configs
 
 def main():
+    # Определяем путь к файлу sources.txt (там же, где main.py)
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    sources_path = os.path.join(script_dir, 'sources.txt')
+    
     try:
-        with open('sources.txt', 'r', encoding='utf-8') as f:
+        with open(sources_path, 'r', encoding='utf-8') as f:
             sources = [line.strip() for line in f if line.strip() and not line.startswith('#')]
     except FileNotFoundError:
-        print("sources.txt не найден!")
+        print("sources.txt не найден в корне репозитория!")
+        print(f"Искал: {sources_path}")
         return
 
     if not sources:
@@ -92,6 +69,9 @@ def main():
     # Убираем дубликаты
     unique_configs = list(dict.fromkeys(all_configs))
     print(f"Всего уникальных конфигов: {len(unique_configs)}")
+
+    # Создаём папку subscriptions, если её нет
+    os.makedirs('subscriptions', exist_ok=True)
 
     # Сохраняем plaintext
     with open('subscriptions/all.txt', 'w', encoding='utf-8') as f:
