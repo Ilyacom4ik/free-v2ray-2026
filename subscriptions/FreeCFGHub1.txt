@@ -1,5 +1,5 @@
-# FreeCFGHub Keys - 2026-03-23 20:00:38
-# Total: 141 | White flag (обходы/WL/CIDR): 92
+#profile-title: 🕊FreeCFGHub
+#profile-update-interval: 1
 
 ## 🇷🇺 (36 keys)
 vless://2bf51e78-4b2a-57d2-217b-d911c86430fe@212.233.73.111:8787?encryption=none&security=reality&sni=ads.x5.ru&fp=chrome&pbk=UcLFIeJB5NC9YOHKq7_9S98vKmfnMFX53faK_iwdHmc&sid=d74d055f6831390e&spx=%2F&type=grpc#🇷🇺 @FreeCFGHub
