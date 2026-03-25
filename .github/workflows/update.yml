@@ -2,7 +2,7 @@ name: Update VPN Configs
 
 on:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 * * * *'   # Каждый час в 0 минут
   workflow_dispatch:
 
 jobs:
@@ -11,21 +11,31 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Важно: забираем всю историю
+          fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - run: pip install requests
+      - name: Install dependencies
+        run: pip install requests
 
-      - run: python main.py
+      - name: Run collector
+        run: python main.py
 
-      - name: Commit and push changes
+      - name: Commit and push
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add subscriptions/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto update configs $(date +'%Y%m%d_%H%M%S')" && git pull --rebase && git push)
+          if ! git diff --quiet HEAD -- subscriptions/; then
+            git commit -m "Auto update configs $(date +'%Y%m%d_%H%M%S')"
+            git pull --rebase origin main
+            git push origin main
+          else
+            echo "No changes to commit"
+          fi
