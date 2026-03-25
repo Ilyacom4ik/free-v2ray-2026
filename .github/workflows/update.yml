@@ -1,41 +1,158 @@
-name: Update VPN Configs
+import requests
+import base64
+import re
+from datetime import datetime
+import os
+import shutil
 
-on:
-  schedule:
-    - cron: '0 * * * *'   # Каждый час в 0 минут
-  workflow_dispatch:
+def is_valid_config(line):
+    return bool(re.match(r'^(vless|vmess|trojan|hysteria2|ss|tuic)://', line.strip()))
 
-jobs:
-  update:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+def fetch_from_url(url):
+    configs = []
+    try:
+        print(f"  Загрузка: {url}")
+        r = requests.get(url.strip(), timeout=15)
+        
+        if r.status_code != 200:
+            print(f"  ❌ Ошибка {r.status_code}")
+            return configs
+        
+        text = r.text.strip()
+        
+        if re.match(r'^[A-Za-z0-9+/=]+$', text) and len(text) > 50:
+            try:
+                decoded = base64.b64decode(text).decode('utf-8', errors='ignore')
+                if any(x in decoded for x in ['vless://', 'vmess://', 'trojan://']):
+                    lines = decoded.splitlines()
+                else:
+                    lines = text.splitlines()
+            except:
+                lines = text.splitlines()
+        else:
+            lines = text.splitlines()
+        
+        for line in lines:
+            cleaned = line.strip()
+            if not cleaned or cleaned.startswith('#'):
+                continue
+            if is_valid_config(cleaned):
+                configs.append(cleaned)
+        
+        print(f"  ✅ Найдено {len(configs)} конфигов")
+                
+    except Exception as e:
+        print(f"  ❌ Ошибка: {e}")
+    
+    return configs
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+def clean_subscriptions_folder():
+    """Удаляет все файлы в папке subscriptions, кроме защищенных"""
+    subscriptions_dir = 'subscriptions'
+    
+    # Файлы, которые НЕ УДАЛЯЕМ
+    protected_files = {'FreeCFGHub.txt', 'FreeCFGHub1.txt', 'all_base64.txt'}
+    
+    if not os.path.exists(subscriptions_dir):
+        print(f"📁 Папка {subscriptions_dir} не существует, создаем...")
+        os.makedirs(subscriptions_dir, exist_ok=True)
+        return
+    
+    print(f"🧹 Очищаем папку {subscriptions_dir} от мусора...")
+    deleted_count = 0
+    
+    for file in os.listdir(subscriptions_dir):
+        file_path = os.path.join(subscriptions_dir, file)
+        
+        # Пропускаем защищенные файлы
+        if file in protected_files:
+            print(f"  🔒 Оставлен: {file}")
+            continue
+        
+        # Удаляем всё остальное
+        try:
+            if os.path.isfile(file_path):
+                os.unlink(file_path)
+                print(f"  🗑️ Удален: {file}")
+                deleted_count += 1
+            elif os.path.isdir(file_path):
+                shutil.rmtree(file_path)
+                print(f"  🗑️ Удалена папка: {file}")
+                deleted_count += 1
+        except Exception as e:
+            print(f"  ❌ Ошибка удаления {file}: {e}")
+    
+    if deleted_count > 0:
+        print(f"✅ Удалено {deleted_count} элементов")
+    else:
+        print("✅ Мусора не найдено")
+    print()
 
-      - name: Install dependencies
-        run: pip install requests
+def main():
+    print("=" * 50)
+    print(f"🚀 Запуск сбора конфигов: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("=" * 50)
+    print()
+    
+    # 🧹 ЧИСТИМ ПАПКУ, НО СОХРАНЯЕМ 3 ФАЙЛА
+    clean_subscriptions_folder()
+    
+    # Читаем источники
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    sources_path = os.path.join(script_dir, 'sources.txt')
+    
+    try:
+        with open(sources_path, 'r', encoding='utf-8') as f:
+            sources = [line.strip() for line in f if line.strip() and not line.startswith('#')]
+        print(f"📁 Загружено источников: {len(sources)}")
+        for url in sources:
+            print(f"  - {url}")
+        print()
+    except FileNotFoundError:
+        print(f"❌ Файл {sources_path} не найден!")
+        return
+    except Exception as e:
+        print(f"❌ Ошибка чтения sources.txt: {e}")
+        return
 
-      - name: Run collector
-        run: python main.py
+    if not sources:
+        print("⚠️ Нет источников в sources.txt")
+        return
 
-      - name: Commit and push
-        run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add subscriptions/
-          if ! git diff --quiet HEAD -- subscriptions/; then
-            git commit -m "Auto update configs $(date +'%Y%m%d_%H%M%S')"
-            git pull --rebase origin main
-            git push origin main
-          else
-            echo "No changes to commit"
-          fi
+    # Собираем все конфиги
+    all_configs = []
+    for i, url in enumerate(sources, 1):
+        print(f"[{i}/{len(sources)}] Обработка источника:")
+        configs = fetch_from_url(url)
+        all_configs.extend(configs)
+        print()
+
+    # Убираем дубликаты
+    unique_configs = list(dict.fromkeys(all_configs))
+    print(f"📊 Всего собрано: {len(all_configs)}")
+    print(f"📊 Уникальных: {len(unique_configs)}")
+    print()
+
+    # Сохраняем ТОЛЬКО 2 файла (FreeCFGHub1.txt НЕ ТРОГАЕМ)
+    with open('subscriptions/FreeCFGHub.txt', 'w', encoding='utf-8') as f:
+        f.write('\n'.join(unique_configs))
+    print(f"✅ Сохранено: subscriptions/FreeCFGHub.txt ({len(unique_configs)} строк)")
+
+    if unique_configs:
+        joined = '\n'.join(unique_configs)
+        b64 = base64.b64encode(joined.encode('utf-8')).decode('utf-8')
+        with open('subscriptions/all_base64.txt', 'w', encoding='utf-8') as f:
+            f.write(b64)
+        print(f"✅ Сохранено: subscriptions/all_base64.txt (base64, {len(unique_configs)} конфигов)")
+    else:
+        with open('subscriptions/all_base64.txt', 'w') as f:
+            f.write('')
+        print("⚠️ Конфигов не найдено, all_base64.txt пуст")
+
+    print()
+    print("=" * 50)
+    print(f"✅ Готово: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("=" * 50)
+
+if __name__ == '__main__':
+    main()
