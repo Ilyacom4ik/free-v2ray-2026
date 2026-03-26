@@ -15,7 +15,9 @@ https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/BLA
 https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/BLACK_SS%2BAll_RUS.txt
 https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/BLACK_VLESS_RUS_mobile.txt
 https://raw.githubusercontent.com/Kirillo4ka/eavevpn-configs/refs/heads/main/WHITE-CIDR-RU-checked.txt
-https://gistpad.com/raw/mia-vpn-tg-reverse-engineer-s-basement
 https://raw.githubusercontent.com/slashrf/VPNBYSLASH/refs/heads/main/freevpn
 https://raw.githubusercontent.com/gogadubrovin24-cyber/DESKVPN/refs/heads/main/PROTO%20VPN
 https://raw.githubusercontent.com/gogadubrovin24-cyber/DESKVPN/refs/heads/main/Mickapica
+https://subrostunnel.vercel.app/wl.txt
+https://rostunnel.vercel.app/mega.txt
+https://raw.githubusercontent.com/Maskkost93/kizyak-vpn-4.0/refs/heads/main/kizyakbeta6BL.txt
