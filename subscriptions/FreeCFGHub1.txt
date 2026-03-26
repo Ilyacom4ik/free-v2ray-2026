@@ -1,4 +1,7 @@
-# FreeCFGHub Keys - 2026-03-25 22:37:11
+#profile-title: 🕊FreeCFGHub
+#profile-update-interval: 1
+
+
 # Total: 94 | White flag (обходы/WL/CIDR): 21
 
 ## 🇷🇺 (8 keys)
