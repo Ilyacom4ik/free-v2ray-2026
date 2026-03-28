@@ -2,78 +2,94 @@
 #profile-update-interval: 1
 
 
+
 🇬🇧 Великобритания
 ----------------------------------------
-vless://394f6981-a782-4779-9a85-e6cf22935d93@uk1.fromblancwithlove.com:8443?encryption=none&security=tls&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#🇬🇧Великобритания 1 @FreeCFGHub
-vless://394f6981-a782-4779-9a85-e6cf22935d93@uk1.fromblancwithlove.com:8443?encryption=none&security=tls&sni=uk1.fromblancwithlove.com&alpn=h2&insecure=0&allowInsecure=0&type=tcp&headerType=none&host=uk1.fromblancwithlove.com#🇬🇧Великобритания 2 @FreeCFGHub
-vless://394f6981-a782-4779-9a85-e6cf22935d93@uk1.fromblancwithlove.com:8443?encryption=none&security=tls&sni=uk1.fromblancwithlove.com&insecure=0&allowInsecure=0&type=tcp&headerType=none#🇬🇧Великобритания 3 @FreeCFGHub
+vless://1167d929-272f-468c-b8d2-9fff1f21646d@dog.chocolatemango.live:5444?encryption=none&flow=xtls-rprx-vision&security=reality&sni=max.ru&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&type=tcp&headerType=none#🇬🇧Великобритания 1 @FreeCFGHub
+vless://1167d929-272f-468c-b8d2-9fff1f21646d@dog.chocolatemango.live:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=max.ru&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2&type=tcp&headerType=none#🇬🇧Великобритания 2 @FreeCFGHub
 
 🇩🇪 Германия
 ----------------------------------------
-🇩🇪 Германия @FreeCFGHub
-vless://d58453c3-c2ce-0981-447d-c508cdb5545c@87.247.142.211:48001/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=travel.yandex.ru&fp=qq&security=reality&pbk=RwlWEtxI1JlN_JYI_x5eyEPL9nh4yJY1cc07BWmuwFE&sid=a04c6a6200a097a0&packetEncoding=xudp#🇩🇪🟩Германия @FreeCFGHub
-vless://4a8ad4a4-1936-4556-9d6a-aa438a05233a@runodeyotubebg.filvless.ru:443/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=runodeyotubebg.filvless.ru&fp=chrome&security=reality&pbk=H-UNEHaRuWj5SQTZCNFGcBNzD2vKbQ8QEW8QmHJL6SQ&sid=2f1dd8ae29d9b875&packetEncoding=xudp#🇩🇪🟩Германия @FreeCFGHub
-vless://e9d89214-5a19-4621-8eaf-58790da45d13@146.185.242.208:5555?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.vk.com&fp=qq&pbk=imS00BOMVviktiAFypnoAQkpQ9-cmS-sWasAeTk2aiU&sid=9e3378923f8e0007&spx=%2FfsdfqpAqqwfqw21v&type=tcp&headerType=none#🇩🇪Германия 1 @FreeCFGHub
-vless://e9d89214-5a19-4621-8eaf-58790da45d13@146.185.242.208:5555?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.vk.com&fp=qq&pbk=imS00BOMVviktiAFypnoAQkpQ9-cmS-sWasAeTk2aiU&sid=61&spx=%2FfsdfqpAqqwfqw21v&type=tcp&headerType=none#🇩🇪Германия 2 @FreeCFGHub
-vless://e9d89214-5a19-4621-8eaf-58790da45d13@146.185.242.208:5555?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.vk.com&fp=qq&pbk=imS00BOMVviktiAFypnoAQkpQ9-cmS-sWasAeTk2aiU&sid=ec80ef&spx=%2FfsdfqpAqqwfqw21v&type=tcp&headerType=none#🇩🇪Германия 3 @FreeCFGHub
-vless://e9d89214-5a19-4621-8eaf-58790da45d13@146.185.242.208:5555?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.vk.com&fp=qq&pbk=imS00BOMVviktiAFypnoAQkpQ9-cmS-sWasAeTk2aiU&sid=7c5c97ed&spx=%2FfsdfqpAqqwfqw21v&type=tcp&headerType=none#🇩🇪Германия 4 @FreeCFGHub
-vless://e9d89214-5a19-4621-8eaf-58790da45d13@146.185.242.208:5555?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.vk.com&fp=qq&pbk=imS00BOMVviktiAFypnoAQkpQ9-cmS-sWasAeTk2aiU&sid=0c45&spx=%2FfsdfqpAqqwfqw21v&type=tcp&headerType=none#🇩🇪Германия 5 @FreeCFGHub
-vless://e9d89214-5a19-4621-8eaf-58790da45d13@146.185.242.208:5555?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.vk.com&fp=qq&pbk=imS00BOMVviktiAFypnoAQkpQ9-cmS-sWasAeTk2aiU&sid=0b1b566f05&spx=%2FfsdfqpAqqwfqw21v&type=tcp&headerType=none#🇩🇪Германия 6 @FreeCFGHub
-vless://e9d89214-5a19-4621-8eaf-58790da45d13@146.185.242.208:5555?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.vk.com&fp=qq&pbk=imS00BOMVviktiAFypnoAQkpQ9-cmS-sWasAeTk2aiU&sid=d3a33c06d9008b&spx=%2FfsdfqpAqqwfqw21v&type=tcp&headerType=none#🇩🇪Германия 7 @FreeCFGHub
+vless://3824f134-a633-4318-9c2a-79887bf811a0@152.53.33.248:7443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=chat.deepseek.com&fp=chrome&pbk=5QAO98ot2U7TcGs_f6EEaQjCzNOJLNHqPf6smYsdFVI&sid=be0ce047&type=tcp&headerType=none#🇩🇪Германия 1 @FreeCFGHub
+vless://3824f134-a633-4318-9c2a-79887bf811a0@45.67.139.93:7443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=chat.deepseek.com&fp=chrome&pbk=5QAO98ot2U7TcGs_f6EEaQjCzNOJLNHqPf6smYsdFVI&sid=be0ce047&type=tcp&headerType=none#🇩🇪Германия 2 @FreeCFGHub
+vless://1ad4aa60-9050-4bc2-b3c6-551fd3bd8c09@germany.grovpn.com:25753?encryption=none&flow=xtls-rprx-vision&security=reality&sni=germany.grovpn.com&fp=chrome&pbk=tUoPx_qSvQVtHA0fZfmJ8JtdmDtQSy_LLKqFHMZO_3w&sid=d5&spx=%2F&type=tcp&headerType=none#🇩🇪Германия 3 @FreeCFGHub
+vless://c76c7b19-1018-41ac-ad99-e6e23990910b@212.233.121.169:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=ads.x5.ru&fp=chrome&pbk=4YI0QbJYHCyl4-VWZPWAMccOmUW0c_XDE_rEZc-dNC0&type=tcp&headerType=none#🇩🇪Германия 4 @FreeCFGHub
+vless://a6a305a0-5131-49ad-9bb1-cac9da6fd558@188.225.82.103:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=pimg.mycdn.me&fp=randomized&pbk=GGrltm-pRqvRL8TJVFKGXDiJyl3WYDLRCt7SkQf8YHg&spx=%2F&type=tcp&headerType=none#🇩🇪Германия 5 @FreeCFGHub
+vless://a6a305a0-5131-49ad-9bb1-cac9da6fd558@188.225.82.103:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=api-maps.yandex.ru&fp=randomized&pbk=gkXWyBWBgObexMJGfDoDLbX2xKJbQwLLEEkzt-4j3ik&spx=%2F&type=tcp&headerType=none#🇩🇪Германия 6 @FreeCFGHub
+vless://a6a305a0-5131-49ad-9bb1-cac9da6fd558@89.223.30.11:5443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=api-maps.yandex.ru&fp=randomized&pbk=RVs7ZIQ7v3MIiCru0IttBEoTSrln5Au_8aSmyJq8pjM&sid=5cae63084b3281f3&spx=%2F&type=tcp&headerType=none#🇩🇪Германия 7 @FreeCFGHub
+vless://72a7c214-5d06-41ba-8faa-c95897aa5295@212.233.121.169:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=ads.x5.ru&fp=chrome&pbk=4YI0QbJYHCyl4-VWZPWAMccOmUW0c_XDE_rEZc-dNC0&type=tcp&headerType=none#🇩🇪Германия 8 @FreeCFGHub
 
  Неизвестно
 ----------------------------------------
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo3ZTczMWVjMy1mOGUxLTQzZjYtOTJjZi0zOTc4ZDE0NzA1YzQ@1.164.19.19:50099?#Неизвестно 1 @FreeCFGHub
-hysteria2://strong-secret-pass-777@45.82.245.37:444?sni=www.microsoft.com&insecure=1&allowInsecure=1&obfs=salamander&obfs-password=cry_me_a_r1ver_2026#Неизвестно 2 @FreeCFGHub
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo3ZTczMWVjMy1mOGUxLTQzZjYtOTJjZi0zOTc4ZDE0NzA1YzQ@n8mrcg004676x9e.cybervena.com:50099?#Неизвестно 3 @FreeCFGHub
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo3ZTczMWVjMy1mOGUxLTQzZjYtOTJjZi0zOTc4ZDE0NzA1YzQ@n8mrcg0060183sf.cybervena.com:50099?#Неизвестно 4 @FreeCFGHub
-vless://4dde0df3-aa67-417c-882e-28beb3886961@38.107.232.35:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=usa.pinkweb.one&fp=chrome&pbk=1KcbQU2qtusi8zaFc0sTu_kjwNkBO1SDBGZ6G95ZuDo&sid=2a4b439db2a0dacf&type=tcp&headerType=none#Неизвестно 5 @FreeCFGHub
-hysteria2://0de37cdc-abff-11ef-b7c6-f23c913c8d2b@df9ad4da-t6t0g0-t80oqd-1rsuw.hk2.hyhuawei.com:443?sni=df9ad4da-t6t0g0-t80oqd-1rsuw.hk2.hyhuawei.com&insecure=0&allowInsecure=0&mport=30000-60000#Неизвестно 6 @FreeCFGHub
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo3ZTczMWVjMy1mOGUxLTQzZjYtOTJjZi0zOTc4ZDE0NzA1YzQ@r3mrcg0011778me.cybervena.com:50099?#Неизвестно 7 @FreeCFGHub
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo3ZTczMWVjMy1mOGUxLTQzZjYtOTJjZi0zOTc4ZDE0NzA1YzQ@n8mrcg006016ehj.cybervena.com:50099?#Неизвестно 8 @FreeCFGHub
-vless://8d5c2801-e4b5-42db-a427-d8a1312c666e@72.56.23.37:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=m.47news.ru&fp=chrome&pbk=bDZMVH2376ZpWZLDhnVKA0C2NcAEyXOqVlKrILw8z1E&sid=b424fc54eefe2ba7&type=tcp&headerType=none#Неизвестно 9 @FreeCFGHub
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo3ZTczMWVjMy1mOGUxLTQzZjYtOTJjZi0zOTc4ZDE0NzA1YzQ@n8mrcg005998s6m.cybervena.com:50099?#Неизвестно 10 @FreeCFGHub
-vless://0cfb8127-873d-46ca-9f31-f7918cdaaf11@85.192.48.112:443?encryption=none&security=reality&sni=xfer.mos-drywall.shop&fp=chrome&pbk=bPRyJNdN6kxTypxr65RjpadXexY5fztAecykcC-NrTM&sid=6a2f3e&type=xhttp&path=%2Fdevxhttp%2F&mode=packet-up&extra=null#Неизвестно 11 @FreeCFGHub
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo3ZTczMWVjMy1mOGUxLTQzZjYtOTJjZi0zOTc4ZDE0NzA1YzQ@ncmrcg000110w54.cybervena.com:50099?#Неизвестно 12 @FreeCFGHub
-vless://e928d85d-f223-07d0-a1d2-a56e9fbd50e0@89.208.228.179:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=ads.x5.ru&fp=qq&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=tcp&headerType=none#Неизвестно 13 @FreeCFGHub
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo3ZTczMWVjMy1mOGUxLTQzZjYtOTJjZi0zOTc4ZDE0NzA1YzQ@n8mrcg004751vh5.cybervena.com:50099?#Неизвестно 14 @FreeCFGHub
-ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo3ZTczMWVjMy1mOGUxLTQzZjYtOTJjZi0zOTc4ZDE0NzA1YzQ@r3mrcg001286ek2.cybervena.com:50099?#Неизвестно 15 @FreeCFGHub
+vless://779a47eb-2476-4af2-8c50-1d800f0c9916@it.tconnect.services:8443?encryption=none&security=reality&sni=it.tconnect.services&pbk=9qwClMAGnKg-Mdw_06BqIqy0OTWj1Sj2EM7ysHzneXs&sid=71e87186710e710e&type=grpc&authority=&serviceName=dropbox.com&mode=gun#Неизвестно 1 @FreeCFGHub
+vless://a2811568-c87b-4626-a21d-b434d39578a0@35.sahanwickramasinghevip.shop:443?encryption=none&security=tls&insecure=0&allowInsecure=0&type=tcp&headerType=none#Неизвестно 2 @FreeCFGHub
+vless://d58453c3-c2ce-0981-447d-c508cdb5545c@45.8.157.20:2031?encryption=none&security=tls&sni=de.x3vpn.ru&insecure=0&allowInsecure=0&type=ws&path=%2F#Неизвестно 3 @FreeCFGHub
+vless://32d37c70-378f-48c3-8859-af8db95854cb@au01.prvxvpn.icu:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=swscan.apple.com&pbk=Uwj82vGl-jAhU3VflWnTy7rISYi03slggjS32Zx8pkk&type=tcp&headerType=none#Неизвестно 4 @FreeCFGHub
+vless://779a47eb-2476-4af2-8c50-1d800f0c9916@usa.tconnect.services:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=cdnjs.com&fp=chrome&pbk=5P5lwGRGhGJATZMYduxof-ZR6eb5lzUpsbdDNddT4l4&sid=71e87186710e710e&type=tcp&headerType=none#Неизвестно 5 @FreeCFGHub
+vless://32d37c70-378f-48c3-8859-af8db95854cb@nl01.prvxvpn.icu:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=swscan.apple.com&pbk=Uwj82vGl-jAhU3VflWnTy7rISYi03slggjS32Zx8pkk&type=tcp&headerType=none#Неизвестно 6 @FreeCFGHub
+vless://4a8ad4a4-1936-4556-9d6a-aa438a05233a@netnode.filvless.ru:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=netnode.filvless.ru&fp=chrome&pbk=6kOe0kYl4qx9V5aDTB18lYZqQtcjPx412yWMOJ8dgUg&sid=92d58c0f0041d062&type=tcp&headerType=none#Неизвестно 7 @FreeCFGHub
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo3ZTczMWVjMy1mOGUxLTQzZjYtOTJjZi0zOTc4ZDE0NzA1YzQ@111.241.84.132:50099?#Неизвестно 8 @FreeCFGHub
+vless://c01733dd-3e58-4da9-910b-cdd4560295bc@95.85.248.117:2443?encryption=none&security=reality&sni=www.microsoft.com&fp=chrome&pbk=DnNJzchiWyWuqwfsQ3Rxo4xKPHktUUaam5hC2xvcI1s&sid=a1b2c3d4&type=grpc&authority=&serviceName=TestChatGRPC&mode=gun#Неизвестно 9 @FreeCFGHub
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo3ZTczMWVjMy1mOGUxLTQzZjYtOTJjZi0zOTc4ZDE0NzA1YzQ@111.248.79.83:50099?#Неизвестно 10 @FreeCFGHub
+vless://c220f447-badb-4120-aa3c-8c10f0a6dcb0@pol.odavpn.online:59422?encryption=none&flow=xtls-rprx-vision&security=reality&sni=ya.ru&fp=chrome&pbk=Px_ZZaayDydcempYZxuouTf_M4lSFUYaciHWP5-_aFY&sid=aabbccdd&type=tcp&headerType=none#Неизвестно 11 @FreeCFGHub
+vless://d58453c3-c2ce-0981-447d-c508cdb5545c@45.8.157.20:47001?encryption=none&flow=xtls-rprx-vision&security=reality&sni=sun6-21.userapi.com&fp=qq&pbk=RwlWEtxI1JlN_JYI_x5eyEPL9nh4yJY1cc07BWmuwFE&sid=6756987a6441a37a&type=tcp&headerType=none#Неизвестно 12 @FreeCFGHub
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo3ZTczMWVjMy1mOGUxLTQzZjYtOTJjZi0zOTc4ZDE0NzA1YzQ@1.163.202.26:50099?#Неизвестно 13 @FreeCFGHub
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo3ZTczMWVjMy1mOGUxLTQzZjYtOTJjZi0zOTc4ZDE0NzA1YzQ@111.250.207.173:50099?#Неизвестно 14 @FreeCFGHub
+ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo3ZTczMWVjMy1mOGUxLTQzZjYtOTJjZi0zOTc4ZDE0NzA1YzQ@114.45.163.12:50099?#Неизвестно 15 @FreeCFGHub
+trojan://WF42809561@85.234.65.205:443?security=tls&sni=model-stingray.crayfish192.xyz&insecure=0&allowInsecure=0&type=tcp&headerType=none#Неизвестно 16 @FreeCFGHub
+vless://779a47eb-2476-4af2-8c50-1d800f0c9916@swiz.tconnect.services:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=stackoverflow.com&pbk=B8VRypcy41lABbR4ZrDPQNTpzh090WOFuAl2zfnStj0&sid=71e87186710e710e&type=tcp&headerType=none#Неизвестно 17 @FreeCFGHub
+
+🇳🇱 Нидерланды
+----------------------------------------
+vless://32d37c70-378f-48c3-8859-af8db95854cb@nl02.prvxvpn.icu:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=swscan.apple.com&pbk=Uwj82vGl-jAhU3VflWnTy7rISYi03slggjS32Zx8pkk&type=tcp&headerType=none#🇳🇱Нидерланды 1 @FreeCFGHub
+vless://d58453c3-c2ce-0981-447d-c508cdb5545c@nl.x3vpn.ru:2031?encryption=none&security=tls&sni=de.x3vpn.ru&insecure=0&allowInsecure=0&type=ws&path=%2F#🇳🇱Нидерланды 2 @FreeCFGHub
+
+🇵🇱 Польша
+----------------------------------------
+vless://06fdcb2f-f8fa-49ec-87f8-95368020e21c@85.192.32.4:8443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=rbc.ru&fp=random&pbk=9Y-_jCI3Z1x6SXK2tHdZ6V1CN9IJPNPnoxSW0cbXxD8&sid=d2c6d9f6e6e12bfe&type=tcp&headerType=none#🇵🇱Польша 1 @FreeCFGHub
+vless://06fdcb2f-f8fa-49ec-87f8-95368020e21c@85.192.32.4:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=rbc.ru&fp=random&pbk=9Y-_jCI3Z1x6SXK2tHdZ6V1CN9IJPNPnoxSW0cbXxD8&sid=50e09046c0c00159&type=tcp&headerType=none#🇵🇱Польша 2 @FreeCFGHub
+vless://d7a492a3-fb7d-4f1c-8cb1-f4773f9c4f80@85.192.32.4:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=rbc.ru&fp=random&pbk=9Y-_jCI3Z1x6SXK2tHdZ6V1CN9IJPNPnoxSW0cbXxD8&sid=764f497dda21c4fc&type=tcp&headerType=none#🇵🇱Польша 3 @FreeCFGHub
 
 🇷🇺 Россия
 ----------------------------------------
-vless://96a711be-542c-4976-9066-33442e780c61@msk1.hitbitapp.com:50051?encryption=none&security=reality&sni=msk1.hitbitapp.com&fp=chrome&pbk=rI9VYuHyu0t0bKzVyNekh_DYgeV4nBI2AFVb910DY2g&sid=c115461100d2c3f9&spx=%2F&type=grpc&authority=&serviceName=%2F&mode=gun#🇷🇺Россия 1 @FreeCFGHub
-vless://0cfb8127-873d-46ca-9f31-f7918cdaaf11@cloud4.whost-solutions.ru:9443?encryption=none&security=reality&sni=cloud.whost-solutions.ru&fp=chrome&pbk=dAEqKL31WKzvZlBZJaRlcfyK8N9zRZNdbvjrB0wZMQE&type=xhttp&path=%2Fxhttp&mode=auto#🇷🇺Россия 2 @FreeCFGHub
-vless://6f623839-1e6f-36ea-aa5b-5a8d9aa16fcd@51.250.92.111:48014?encryption=none&flow=xtls-rprx-vision&security=reality&sni=max.ru&fp=qq&pbk=J5-ZvlY9EUESyDK6jv2gRkPLKw-HULy8bJU58o_Blmw&sid=1fbcfafa80e45b24&type=tcp&headerType=none#🇷🇺Россия 3 @FreeCFGHub
-vless://49848de7-5458-4d99-b933-5ba0f34829d7@91.243.82.234:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=event.yandex.ru&fp=chrome&pbk=Wt10I4MYfQ7UDOAaohWJqX8fp4KDfKA_cQNxNLtHhGQ&sid=88d72aaff629&spx=%2F&type=tcp&headerType=none#🇷🇺Россия 4 @FreeCFGHub
-vless://c4f2dee2-14e3-4c02-91e9-31c7917e239c@swe-bridge.sbrf-cdn342.ru:443?encryption=none&flow=xtls-rprx-vision&security=tls&sni=sub.sbrf-cdn342.ru&fp=qq&alpn=http%2F1.1&insecure=0&allowInsecure=0&type=tcp&headerType=none#🇷🇺Россия 5 @FreeCFGHub
-vless://e4480b6f-4808-4410-abb3-0b0f67ddfa2f@94.241.168.79:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=goodcardboard.shop&fp=randomized&pbk=rDPZZOBMmBb_mNKPEewzp9Uu6zkGrP7XOVpnRzetXDc&spx=%2F&type=tcp&headerType=none#🇷🇺Россия 6 @FreeCFGHub
-vless://acdb62f5-9914-4291-824b-1a27285f342f@94.241.168.216:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=goodcardboard.shop&fp=randomized&pbk=rDPZZOBMmBb_mNKPEewzp9Uu6zkGrP7XOVpnRzetXDc&spx=%2F&type=tcp&headerType=none#🇷🇺Россия 7 @FreeCFGHub
-vless://fbc4646d-0ef3-01f4-b02e-b3118d768940@89.208.228.179:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=ads.x5.ru&fp=qq&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=tcp&headerType=none#🇷🇺Россия 8 @FreeCFGHub
-vless://584172ad-c573-07d0-add8-9a21b2fb1a2f@89.208.228.179:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=ads.x5.ru&fp=qq&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=tcp&headerType=none#🇷🇺Россия 9 @FreeCFGHub
-vless://584172ad-c573-03e8-add8-9a21b2fb1a2f@89.208.228.128:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=ads.x5.ru&fp=qq&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=tcp&headerType=none#🇷🇺Россия 10 @FreeCFGHub
-vless://acdb62f5-9914-4291-824b-1a27285f342f@94.241.168.206:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=goodcardboard.shop&fp=randomized&pbk=rDPZZOBMmBb_mNKPEewzp9Uu6zkGrP7XOVpnRzetXDc&spx=%2F&type=tcp&headerType=none#🇷🇺Россия 11 @FreeCFGHub
-vless://e4480b6f-4808-4410-abb3-0b0f67ddfa2f@94.241.168.237:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=goodcardboard.shop&fp=randomized&pbk=rDPZZOBMmBb_mNKPEewzp9Uu6zkGrP7XOVpnRzetXDc&spx=%2F&type=tcp&headerType=none#🇷🇺Россия 12 @FreeCFGHub
-vless://584172ad-c573-1f40-add8-9a21b2fb1a2f@89.208.228.179:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=ads.x5.ru&fp=qq&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=tcp&headerType=none#🇷🇺Россия 13 @FreeCFGHub
-vless://acdb62f5-9914-4291-824b-1a27285f342f@94.241.168.66:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=goodcardboard.shop&fp=randomized&pbk=rDPZZOBMmBb_mNKPEewzp9Uu6zkGrP7XOVpnRzetXDc&spx=%2F&type=tcp&headerType=none#🇷🇺Россия 14 @FreeCFGHub
-vless://acdb62f5-9914-4291-824b-1a27285f342f@94.241.168.24:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=goodcardboard.shop&fp=randomized&pbk=rDPZZOBMmBb_mNKPEewzp9Uu6zkGrP7XOVpnRzetXDc&spx=%2F&type=tcp&headerType=none#🇷🇺Россия 15 @FreeCFGHub
-vless://fbc4646d-0ef3-07d0-b02e-b3118d768940@89.208.228.179:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=ads.x5.ru&fp=qq&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=tcp&headerType=none#🇷🇺Россия 16 @FreeCFGHub
-vless://e4480b6f-4808-4410-abb3-0b0f67ddfa2f@94.241.168.145:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=goodcardboard.shop&fp=randomized&pbk=rDPZZOBMmBb_mNKPEewzp9Uu6zkGrP7XOVpnRzetXDc&spx=%2F&type=tcp&headerType=none#🇷🇺Россия 17 @FreeCFGHub
-vless://e4480b6f-4808-4410-abb3-0b0f67ddfa2f@94.241.168.24:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=goodcardboard.shop&fp=randomized&pbk=rDPZZOBMmBb_mNKPEewzp9Uu6zkGrP7XOVpnRzetXDc&spx=%2F&type=tcp&headerType=none#🇷🇺Россия 18 @FreeCFGHub
-vless://acdb62f5-9914-4291-824b-1a27285f342f@94.241.168.236:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=goodcardboard.shop&fp=randomized&pbk=rDPZZOBMmBb_mNKPEewzp9Uu6zkGrP7XOVpnRzetXDc&spx=%2F&type=tcp&headerType=none#🇷🇺Россия 19 @FreeCFGHub
-vless://acdb62f5-9914-4291-824b-1a27285f342f@94.241.168.79:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=goodcardboard.shop&fp=randomized&pbk=rDPZZOBMmBb_mNKPEewzp9Uu6zkGrP7XOVpnRzetXDc&spx=%2F&type=tcp&headerType=none#🇷🇺Россия 20 @FreeCFGHub
+vless://2ac7ab0e-4411-07d0-8dab-04ac36d3195f@212.92.101.180:51006?encryption=none&security=reality&sni=5post-gate.x5.ru&fp=qq&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=xhttp&path=%2F&mode=packet-up&extra=null#🇷🇺Россия 1 @FreeCFGHub
+vless://0d0a5a50-e18e-496d-8b33-517222872af0@83.166.237.46:9443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=io.ozone.ru&fp=chrome&pbk=im7-98zxWz_OGimQfeoN_Y5p1tAy8KoZCxOe2wOeWS4&type=tcp&headerType=none#🇷🇺Россия 2 @FreeCFGHub
+vless://8a2d88e1-cd72-07d0-846f-d46c231ebe75@212.92.101.180:51006?encryption=none&security=reality&sni=5post-gate.x5.ru&fp=qq&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=xhttp&path=%2F&mode=packet-up&extra=null#🇷🇺Россия 3 @FreeCFGHub
+vless://dbebcaef-4cc8-07d0-888b-2962aae2e5d3@212.92.101.180:51006?encryption=none&security=reality&sni=5post-gate.x5.ru&fp=qq&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=xhttp&path=%2F&mode=packet-up&extra=null#🇷🇺Россия 4 @FreeCFGHub
+vless://9c623ae4-dcfa-45ce-9d94-4c18ba621cf2@217.25.92.29:1443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=mycdn.me&fp=safari&pbk=aU2OW_NDrjzvM3WV-u8La7VwMdWbfLW8yFr5CJhB3GY&sid=9cc1c6c13ba3b8b1&type=tcp&headerType=none#🇷🇺Россия 5 @FreeCFGHub
+vless://80fcf773-a7fa-07d0-b451-c00626f57603@212.92.101.180:51006?encryption=none&security=reality&sni=5post-gate.x5.ru&fp=qq&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=xhttp&path=%2F&mode=packet-up&extra=null#🇷🇺Россия 6 @FreeCFGHub
+vless://e928d85d-f223-07d0-a1d2-a56e9fbd50e0@212.92.101.180:51006?encryption=none&security=reality&sni=5post-gate.x5.ru&fp=qq&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=xhttp&path=%2F&mode=packet-up&extra=null#🇷🇺Россия 7 @FreeCFGHub
+vless://8dc2d7d6-fc93-07d0-a911-e01486357252@212.92.101.180:51006?encryption=none&security=reality&sni=5post-gate.x5.ru&fp=qq&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=xhttp&path=%2F&mode=packet-up&extra=null#🇷🇺Россия 8 @FreeCFGHub
+vless://d58453c3-c2ce-0981-447d-c508cdb5545c@185.218.204.203:47001?encryption=none&flow=xtls-rprx-vision&security=reality&sni=sun6-21.userapi.com&fp=qq&pbk=RwlWEtxI1JlN_JYI_x5eyEPL9nh4yJY1cc07BWmuwFE&sid=6756987a6441a37a&type=tcp&headerType=none#🇷🇺Россия 9 @FreeCFGHub
+vless://2b8a999b-cbe6-07d0-9e40-d1cb6b48dca1@212.92.101.180:51006?encryption=none&security=reality&sni=5post-gate.x5.ru&fp=qq&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=xhttp&path=%2F&mode=packet-up&extra=null#🇷🇺Россия 10 @FreeCFGHub
+vless://754dfc91-8b6c-07d0-905f-47480387e8a4@212.92.101.180:51006?encryption=none&security=reality&sni=5post-gate.x5.ru&fp=qq&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=xhttp&path=%2F&mode=packet-up&extra=null#🇷🇺Россия 11 @FreeCFGHub
+vless://d58453c3-c2ce-0981-447d-c508cdb5545c@185.218.204.203:2031?encryption=none&security=tls&sni=de.x3vpn.ru&insecure=0&allowInsecure=0&type=ws&path=%2F#🇷🇺Россия 12 @FreeCFGHub
+vless://b53877d7-5202-07d0-9ab5-addafffa2add@212.92.101.180:51006?encryption=none&security=reality&sni=5post-gate.x5.ru&fp=qq&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=xhttp&path=%2F&mode=packet-up&extra=null#🇷🇺Россия 13 @FreeCFGHub
+vless://dbebcaef-4cc8-07d0-888b-2962aae2e5d3@212.92.101.177:51006?encryption=none&security=reality&sni=5post-gate.x5.ru&fp=qq&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=xhttp&path=%2F&mode=packet-up&extra=null#🇷🇺Россия 14 @FreeCFGHub
+vless://e928d85d-f223-07d0-a1d2-a56e9fbd50e0@212.92.101.177:51006?encryption=none&security=reality&sni=5post-gate.x5.ru&fp=qq&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=xhttp&path=%2F&mode=packet-up&extra=null#🇷🇺Россия 15 @FreeCFGHub
+vless://8a2d88e1-cd72-07d0-846f-d46c231ebe75@212.92.101.177:51006?encryption=none&security=reality&sni=5post-gate.x5.ru&fp=qq&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=xhttp&path=%2F&mode=packet-up&extra=null#🇷🇺Россия 16 @FreeCFGHub
+vless://779a47eb-2476-4af2-8c50-1d800f0c9916@usa-2.tconnect.services:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=cdnjs.com&pbk=FnQ1tm1VjohTrCvJqRgboe2D3539zm0ok4hVBxP8cDw&sid=71e87186710e710e&type=tcp&headerType=none#🇷🇺Россия 17 @FreeCFGHub
+vless://4a8ad4a4-1936-4556-9d6a-aa438a05233a@swenoda.filvless.ru:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=swenoda.filvless.ru&fp=chrome&pbk=bSFpFvLy4_UWzmzY1YIwbkJlCz5k0HNjvW5FjZo9kCc&sid=7996c0493a0660cd&type=tcp&headerType=none#🇷🇺Россия 18 @FreeCFGHub
+vless://9c623ae4-dcfa-45ce-9d94-4c18ba621cf2@188.225.27.46:4443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=goodcardboard.shop&fp=randomized&pbk=klHm-uac99hCv2KSrkyp89p2lHetdJOrR8Dex9pQIlI&type=tcp&headerType=none#🇷🇺Россия 19 @FreeCFGHub
+vless://e928d85d-f223-07d0-a1d2-a56e9fbd50e0@5.188.141.137:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=ads.x5.ru&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=tcp&headerType=none#🇷🇺Россия 20 @FreeCFGHub
+vless://e928d85d-f223-07d0-a1d2-a56e9fbd50e0@5.188.141.137:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=ads.x5.ru&fp=chrome&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=tcp&headerType=none#🇷🇺Россия 21 @FreeCFGHub
+vless://e928d85d-f223-07d0-a1d2-a56e9fbd50e0@89.208.228.139:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=ads.x5.ru&fp=chrome&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=tcp&headerType=none#🇷🇺Россия 22 @FreeCFGHub
+vless://e928d85d-f223-2710-a1d2-a56e9fbd50e0@5.188.141.137:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=ads.x5.ru&fp=chrome&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=tcp&headerType=none#🇷🇺Россия 23 @FreeCFGHub
+vless://779a47eb-2476-4af2-8c50-1d800f0c9916@ru-1.tconnect.services:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=rutube.ru&fp=chrome&pbk=6uOn_Wsv4J5DV6HtQ0Q7kUvxwxsBFFTSiRlXAss292Y&sid=71e87186710e710e&type=tcp&headerType=none#🇷🇺Россия 24 @FreeCFGHub
+vless://5e395563-c6b4-478d-9383-961efe645bb3@ruporkzov.com:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=ruporkzov.com&fp=qq&pbk=mk-fkkWvUHz2ubIOkr8kfDeglXowdCI3Z4OssjWIIwg&sid=2b145d99dc39e2cc&type=tcp&headerType=none#🇷🇺Россия 25 @FreeCFGHub
+vless://e928d85d-f223-03e8-a1d2-a56e9fbd50e0@89.208.230.171:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=ads.x5.ru&fp=qq&pbk=4CH3o5zOMcFNMbnwXnkAg0FFepmsc0QzhahXkUzb1ik&sid=d8c6b58bcbb0c323&type=tcp&headerType=none#🇷🇺Россия 26 @FreeCFGHub
+vless://779a47eb-2476-4af2-8c50-1d800f0c9916@ru-3.tconnect.services:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=cloudcdn-m9-6.cdn.yandex.net&fp=chrome&pbk=INX5PFS6kQVOtXdnPOlrz69eYrfiaRWnL0aS_Nbmuy8&sid=71e87186710e710e&type=tcp&headerType=none#🇷🇺Россия 27 @FreeCFGHub
+vless://32d37c70-378f-48c3-8859-af8db95854cb@msc01.prvxvpn.icu:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=swscan.apple.com&pbk=Uwj82vGl-jAhU3VflWnTy7rISYi03slggjS32Zx8pkk&type=tcp&headerType=none#🇷🇺Россия 28 @FreeCFGHub
+vless://0d0a5a50-e18e-496d-8b33-517222872af0@5.129.204.5:9878?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.apple.com&fp=chrome&pbk=im7-98zxWz_OGimQfeoN_Y5p1tAy8KoZCxOe2wOeWS4&type=tcp&headerType=none#🇷🇺Россия 29 @FreeCFGHub
+vless://d58453c3-c2ce-0981-447d-c508cdb5545c@212.233.72.178:48101?encryption=none&flow=xtls-rprx-vision&security=reality&sni=max.ru&fp=chrome&pbk=RwlWEtxI1JlN_JYI_x5eyEPL9nh4yJY1cc07BWmuwFE&sid=a04c6a6200a097a0&type=tcp&headerType=none#🇷🇺Россия 30 @FreeCFGHub
 
 🇫🇮 Финляндия
 ----------------------------------------
-vless://0cfb8127-873d-46ca-9f31-f7918cdaaf11@85.192.48.115:443?encryption=none&security=reality&sni=xfer.mos-drywall.shop&fp=chrome&pbk=bPRyJNdN6kxTypxr65RjpadXexY5fztAecykcC-NrTM&sid=6a2f3e&type=xhttp&path=%2Fdevxhttp%2F&mode=packet-up&extra=null#🇫🇮Финляндия 1 @FreeCFGHub
-hysteria2://strong-secret-pass-777@2.56.172.83:444?sni=www.microsoft.com&insecure=1&allowInsecure=1&obfs=salamander&obfs-password=cry_me_a_r1ver_2026#🇫🇮Финляндия 2 @FreeCFGHub
-vless://0cfb8127-873d-46ca-9f31-f7918cdaaf11@xfer.mos-drywall.shop:443?encryption=none&security=reality&sni=xfer.mos-drywall.shop&fp=chrome&pbk=bPRyJNdN6kxTypxr65RjpadXexY5fztAecykcC-NrTM&sid=6a2f3e&type=xhttp&path=%2Fdevxhttp%2F&mode=packet-up#🇫🇮Финляндия 3 @FreeCFGHub
+vless://c4f2dee2-14e3-4c02-91e9-31c7917e239c@185.93.105.107:443?encryption=none&flow=xtls-rprx-vision&security=tls&sni=sub.sbrf-cdn342.ru&fp=qq&alpn=http%2F1.1&insecure=0&allowInsecure=0&type=tcp&headerType=none#🇫🇮Финляндия 1 @FreeCFGHub
 
-🇸🇪 Швеция
+🇫🇷 Франция
 ----------------------------------------
-vless://c1e95286-aa98-4b06-a361-df5fd8364cbd@84.32.50.24:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=deepl.com&fp=chrome&pbk=vnjp7zIK2H3CGdjSis_79KXqS6IG-opmpbETPUD-EC8&sid=15affa0af66dfc79&type=tcp&headerType=none#🇸🇪Швеция 1 @FreeCFGHub
-vless://d5a40dab-46fa-43c2-97eb-4e32047006b7@84.32.50.24:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=deepl.com&fp=chrome&pbk=vnjp7zIK2H3CGdjSis_79KXqS6IG-opmpbETPUD-EC8&sid=15affa0af66dfc79&type=tcp&headerType=none#🇸🇪Швеция 2 @FreeCFGHub
-
-🇪🇪🟩Эстония @FreeCFGHub
-vless://595cc792-0257-4673-9079-4e1247519c6f@69.12.83.232:443/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=ign.com&fp=chrome&security=reality&pbk=6Ra2AsVwORJlxqvQ9YHAfHFk8Z0HZIrWuXxlBEYpwQY&sid=e7b5024fd83a16c9&packetEncoding=xudp#🇪🇪Эстония @FreeCFGHub
-
-
+vless://5029d5bc-e7ec-410c-bc85-638419294beb@45.151.30.160:8443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=rbc.ru&fp=random&pbk=1oUeBtHH4DskTM_jCh-6enWRkFMDX9l1OU5kWYl4kxA&sid=364994a6f61fc955&type=tcp&headerType=none#🇫🇷Франция 1 @FreeCFGHub
+vless://5861bffb-7f59-4ee1-90f3-6b55f226bf0e@178.72.185.81:8443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=rbc.ru&fp=random&pbk=1oUeBtHH4DskTM_jCh-6enWRkFMDX9l1OU5kWYl4kxA&sid=364994a6f61fc955&type=tcp&headerType=none#🇫🇷Франция 2 @FreeCFGHub
+vless://5029d5bc-e7ec-410c-bc85-638419294beb@178.72.185.81:8443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=rbc.ru&fp=random&pbk=1oUeBtHH4DskTM_jCh-6enWRkFMDX9l1OU5kWYl4kxA&sid=364994a6f61fc955&type=tcp&headerType=none#🇫🇷Франция 3 @FreeCFGHub
+vless://5861bffb-7f59-4ee1-90f3-6b55f226bf0e@45.151.30.160:8443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=rbc.ru&fp=random&pbk=1oUeBtHH4DskTM_jCh-6enWRkFMDX9l1OU5kWYl4kxA&sid=364994a6f61fc955&type=tcp&headerType=none#🇫🇷Франция 4 @FreeCFGHub
