@@ -5,7 +5,7 @@ https://raw.githubusercontent.com/terik21/HiddifySubs-VlessKeys/refs/heads/main/
 https://wlrus.lol/confs/blackl.txt
 https://raw.githubusercontent.com/zieng2/wl/main/vless_universal.txt
 https://raw.githubusercontent.com/ksenkovsolo/HardVPN-bypass-WhiteLists-/refs/heads/main/vpn-lte/best_good_renamed.txt
-https://raw.githubusercontent.com/tankist939-afk/Obhod-WL/refs/heads/main/Obhod%20WL
+
 https://mygala.ru/vpn/subscription.txt
 https://raw.githubusercontent.com/LimeHi/LimeVPNGenerator/main/Keys.txt?v=1
 https://airlinkvpn.github.io/1.txt
