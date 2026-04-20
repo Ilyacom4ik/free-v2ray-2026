@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
+import sys
+print("DEBUG 1: скрипт начал работу", flush=True)
+sys.stdout.flush()
 import requests
 import base64
 import re
