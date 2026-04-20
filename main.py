@@ -58,6 +58,13 @@ except Exception as e:
     sys.exit(1)
 
 print("DEBUG 13: начинаю сбор конфигов", flush=True)
+all_configs = []
+for i, url in enumerate(sources):
+    print(f"DEBUG 14.{i}: загружаю {url}", flush=True)
+    configs = fetch_from_url(url)
+    print(f"DEBUG 14.{i}: получил {len(configs)} ключей", flush=True)
+    all_configs.extend(configs)
+    print(f"DEBUG 14.{i}: всего сейчас {len(all_configs)}", flush=True)
 
 # Дальше остальной код...
 import requests
