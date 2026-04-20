@@ -3,6 +3,43 @@
 import sys
 print("DEBUG 1: скрипт начал работу", flush=True)
 sys.stdout.flush()
+
+print("DEBUG 2: импортирую requests", flush=True)
+import requests
+print("DEBUG 2.1: requests ok", flush=True)
+
+print("DEBUG 3: импортирую base64", flush=True)
+import base64
+print("DEBUG 3.1: base64 ok", flush=True)
+
+print("DEBUG 4: импортирую re", flush=True)
+import re
+print("DEBUG 4.1: re ok", flush=True)
+
+print("DEBUG 5: импортирую socket", flush=True)
+import socket
+print("DEBUG 5.1: socket ok", flush=True)
+
+print("DEBUG 6: импортирую datetime", flush=True)
+from datetime import datetime
+print("DEBUG 6.1: datetime ok", flush=True)
+
+print("DEBUG 7: импортирую os", flush=True)
+import os
+print("DEBUG 7.1: os ok", flush=True)
+
+print("DEBUG 8: импортирую defaultdict", flush=True)
+from collections import defaultdict
+print("DEBUG 8.1: defaultdict ok", flush=True)
+
+print("DEBUG 9: импортирую ThreadPoolExecutor", flush=True)
+from concurrent.futures import ThreadPoolExecutor, as_completed
+print("DEBUG 9.1: ThreadPoolExecutor ok", flush=True)
+
+print("START", flush=True)
+print("🚀 Запуск", flush=True)
+
+# Дальше остальной код...
 import requests
 import base64
 import re
