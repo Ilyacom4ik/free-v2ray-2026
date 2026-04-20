@@ -39,6 +39,26 @@ print("DEBUG 9.1: ThreadPoolExecutor ok", flush=True)
 print("START", flush=True)
 print("🚀 Запуск", flush=True)
 
+print("DEBUG 10: читаю sources.txt", flush=True)
+script_dir = os.path.dirname(os.path.abspath(__file__))
+sources_path = os.path.join(script_dir, 'sources.txt')
+print(f"DEBUG 11: sources_path = {sources_path}", flush=True)
+
+try:
+    with open(sources_path, 'r', encoding='utf-8') as f:
+        sources = [line.strip() for line in f if line.strip() and not line.startswith('#')]
+    print(f"DEBUG 12: найдено источников: {len(sources)}", flush=True)
+    for i, url in enumerate(sources):
+        print(f"DEBUG 12.{i}: {url}", flush=True)
+except FileNotFoundError:
+    print("❌ sources.txt не найден", flush=True)
+    sys.exit(1)
+except Exception as e:
+    print(f"❌ Ошибка: {e}", flush=True)
+    sys.exit(1)
+
+print("DEBUG 13: начинаю сбор конфигов", flush=True)
+
 # Дальше остальной код...
 import requests
 import base64
