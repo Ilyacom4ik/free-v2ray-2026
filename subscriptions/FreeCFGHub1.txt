@@ -1,5 +1,6 @@
 #profile-title: 🕊FreeCFGHub
 #profile-update-interval: 1 
+
 🏳️ Белые списки (SNI из списка)
 
 vless://4036688f-4e87-502d-82e0-3f0203a6f004@94.103.2.194:443?encryption=none&security=reality&sni=business.max.ru&fp=chrome&pbk=CxSsLf7XPhNjhqp0QBOI699kkudkiJCoCVfqqXSllyU&sid=18ec&spx=%2F&type=xhttp&host=business.max.ru&path=%2FD0Pq4fZn6obwQj&mode=auto&extra=null#Обход БС #001 @FreeCFGHub
