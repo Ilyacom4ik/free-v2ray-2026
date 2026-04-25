@@ -1,9 +1,9 @@
-profile-update-interval: 6
-profile-title: 🕊FreeCFGHub
-profile-web-page-url: https://t.me/FreeCFGHub
-support-url: https://t.me/FreeCFGHub
-announce: 🚀 FreeCFGHub — всё для свободного интернета 🔥 Свежие VLESS-ключи каждый день. Всё бесплатно! ❤️
-subscription-userinfo: upload=0; download=0; total=0
+profile-update-interval: 1
+#profile-title: 🕊FreeCFGHub
+#profile-web-page-url: https://t.me/freepyvpn
+#support-url: https://t.me/twempy
+#announce: 🚀 FreeCFGHub — всё для свободного интернета 🔥 Свежие VLESS-ключи каждый день. Всё бесплатно! ❤️
+#subscription-userinfo: upload=0; download=0; total=0
 vless://30eb6fb5-7fb8-4987-946f-445ee78be3b0@109.120.191.233:80?encryption=none&security=reality&sni=sso.passport.yandex.ru&fp=chrome&pbk=Z84J2IelR9ch3k8VtlVhhs5ycBUlXA7wHBWcBrjqnAw&sid=7dbf7d3233971d5c&type=tcp&headerType=none#Обход БС #001 @FreeCFGHub
 vless://d2145019-520b-4d61-af91-350aac978a04@109.120.191.233:80?encryption=none&security=reality&sni=eh.vk.com&fp=chrome&pbk=Z84J2IelR9ch3k8VtlVhhs5ycBUlXA7wHBWcBrjqnAw&sid=7dbf7d3233971d5c&type=tcp&headerType=none#Обход БС #002 @FreeCFGHub
 vless://6da9024a-d301-4504-909b-4e1c30482c76@91.219.227.253:80?encryption=none&security=reality&sni=eh.vk.com&fp=qq&pbk=Z84J2IelR9ch3k8VtlVhhs5ycBUlXA7wHBWcBrjqnAw&sid=7dbf7d3233971d5c&type=tcp&headerType=none#Обход БС #003 @FreeCFGHub
