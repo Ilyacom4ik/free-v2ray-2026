@@ -5,15 +5,6 @@ profile-update-interval: 1
 #announce: 🚀 FreeCFGHub — всё для свободного интернета 🔥 Свежие VLESS-ключи каждый день. Всё бесплатно! ❤️
 #subscription-userinfo: upload=0; download=0; total=0; expire=2208729600
 🏳️ Белые списки (SNI из списка)
-vless://4c48ed3f-765e-4a96-9ce7-ebddb6847a85@84.201.180.39:8446?type=xhttp&security=reality&sni=eh.vk.com&pbk=erLlvIVzNci_bhIXdVVpPy-KrwDKyxb_2sZdFOXVBx0&sid=230a02b9981a8b97&path=%2F&host=eh.vk.com#🇩🇪LTE Германия_1
-vless://4c48ed3f-765e-4a96-9ce7-ebddb6847a85@84.201.180.39:8446?type=xhttp&security=reality&sni=id.x5.ru&pbk=-dEJG9joRyBWsBBgOC5wvvTuxkOx0rbT_cCR-3FeUGE&sid=83d2d381865b5ee4&path=%2F&host=id.x5.ru#🇩🇪LTE Германия_2
-vless://4c48ed3f-765e-4a96-9ce7-ebddb6847a85@51.250.101.187:8446?type=xhttp&security=reality&sni=m.vk.com&pbk=JCb_XSqs5RX1ABXUECpDz5HZ5gzzFAJoO9IBs9ETqkE&sid=7ccbcb93b59845de&path=%2F&host=m.vk.com#🇩🇪LTE Германия_3
-vless://4c48ed3f-765e-4a96-9ce7-ebddb6847a85@51.250.101.187:8443?type=tcp&security=reality&flow=xtls-rprx-vision&sni=eh.vk.com&pbk=erLlvIVzNci_bhIXdVVpPy-KrwDKyxb_2sZdFOXVBx0&sid=230a02b9981a8b97#🇩🇪LTE Германия_4
-vless://4c48ed3f-765e-4a96-9ce7-ebddb6847a85@51.250.104.102:8446?type=xhttp&security=reality&sni=eh.vk.com&pbk=erLlvIVzNci_bhIXdVVpPy-KrwDKyxb_2sZdFOXVBx0&sid=230a02b9981a8b97&path=%2F&host=eh.vk.com#🇩🇪LTE Германия_5
-vless://4c48ed3f-765e-4a96-9ce7-ebddb6847a85@109.120.183.104:8446?type=xhttp&security=reality&sni=id.x5.ru&pbk=-dEJG9joRyBWsBBgOC5wvvTuxkOx0rbT_cCR-3FeUGE&sid=83d2d381865b5ee4&path=%2F&host=id.x5.ru#🇩🇪LTE Германия_6
-vless://4c48ed3f-765e-4a96-9ce7-ebddb6847a85@109.120.183.104:8443?type=tcp&security=reality&flow=xtls-rprx-vision&sni=id.x5.ru&pbk=-dEJG9joRyBWsBBgOC5wvvTuxkOx0rbT_cCR-3FeUGE&sid=83d2d381865b5ee4#🇩🇪LTE Германия_7
-vless://4c48ed3f-765e-4a96-9ce7-ebddb6847a85@185.86.145.117:8446?type=xhttp&security=reality&sni=id.x5.ru&pbk=-dEJG9joRyBWsBBgOC5wvvTuxkOx0rbT_cCR-3FeUGE&sid=83d2d381865b5ee4&path=%2F&host=id.x5.ru#🇩🇪LTE Германия_8
-vless://4c48ed3f-765e-4a96-9ce7-ebddb6847a85@185.86.145.117:8443?type=tcp&security=reality&flow=xtls-rprx-vision&sni=ads.x5.ru&pbk=Q-GdAvOJdfsTVfS5uimCa9f5ARAsVNUqeoRSSOJbXGY&sid=7ccbcb93b59845de#🇩🇪LTE Германия_9
 vless://e7aee30e-64f1-4b84-b70e-16c673f6908e@185.80.91.169:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=sosok.vk.com&fp=chrome&pbk=vZCRu2nZ7v7diSX2Zv7sOoFM2ESufvAyFwt0Bw9pJSc&sid=fc&spx=%2F&type=tcp&headerType=none#Обход БС #010 @FreeCFGHub
 vless://31fb98b7-e7a1-4b56-8c6a-3f060f06393c@freetg.strettenvpn.com:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=eh.vk.com&fp=chrome&pbk=yhUfTGgu5PYRlFqMnRZkxffH_aU05AFUToGI8_EKF28&sid=8248954896&spx=%2Fo7Aaf6fjwgbitolAe&type=tcp&headerType=none#Обход БС #011 @FreeCFGHub
 vless://1ad02168-e517-450b-9613-67f82ebb6239@89.169.131.213:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=5post-gate.x5.ru&fp=chrome&pbk=nERxknsOFZqBENqyQSrqB0aimON9HJyzkgONd7i4bCY&sid=590e5efe14ee0ba0&type=tcp&headerType=none#Обход БС #012 @FreeCFGHub
