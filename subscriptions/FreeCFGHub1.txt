@@ -3,7 +3,7 @@ profile-update-interval: 1
 #profile-web-page-url: https://t.me/FreeCFGHub
 #support-url: https://t.me/FreeCFGHub
 #announce: 🚀 FreeCFGHub — всё для свободного интернета 🔥 Свежие VLESS-ключи каждый день. Всё бесплатно! ❤️
-#subscription-userinfo: upload=0; download=0; total=0 expire=2208729600
+#subscription-userinfo: upload=0; download=0; total=0; expire=2208729600
 vless://3dd8a979-79bd-4e3e-bd99-b6910eb32f7c@ru20.just-cloud.org:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=api-maps.yandex.ru&fp=qq&pbk=wqAdpURdLWbn79pUufQzOKTaZwdqi19InTgQjVjo7iY&type=tcp&headerType=none#Обход БС #001 @FreeCFGHub
 vless://d0ca2925-57c3-4b00-8422-535deb55ecfe@91.219.227.253:80?encryption=none&security=reality&sni=eh.vk.com&fp=qq&pbk=Z84J2IelR9ch3k8VtlVhhs5ycBUlXA7wHBWcBrjqnAw&sid=7dbf7d3233971d5c&type=tcp&headerType=none#Обход БС #002 @FreeCFGHub
 vless://e08d2d8b-173f-0007-8867-fb20f3cd26bd@ru.x8lab.org:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=rutube.ru&fp=chrome&pbk=k9BuzZPnzofDcPTaa7ROHNIc9ww2jy3tLAJ04GuKvAQ&sid=cd0b563c7e0ea754&type=tcp&headerType=none#Обход БС #003 @FreeCFGHub
