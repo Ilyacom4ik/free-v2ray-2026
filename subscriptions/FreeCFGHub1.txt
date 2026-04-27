@@ -1,4 +1,4 @@
-profile-update-interval: 1
+#profile-update-interval: 1
 #profile-title: 🕊FreeCFGHub
 #profile-web-page-url: https://t.me/FreeCFGHub
 #support-url: https://t.me/FreeCFGHub
