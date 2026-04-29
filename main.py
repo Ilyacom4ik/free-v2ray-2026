@@ -17,8 +17,10 @@ CHANNEL_TAG = "@FreeCFGHub"
 CHECK_TIMEOUT = 5
 MAX_WORKERS = 20
 
+# Изменено: теперь проверяем на Lite и Full (старые названия не трогаем)
+# Но можно оставить и старые для обратной совместимости
 WHITE_KEYWORDS = [
-    r'\[\*CIDR\]', r'Обход', r'Белые?\s*списки?', r'White\s*List', r'WL', r'Обход глушилок'
+    r'\[\*CIDR\]', r'Lite', r'Белые?\s*списки?', r'White\s*List', r'WL'
 ]
 
 def is_valid_config(line):
@@ -236,59 +238,76 @@ def main():
     
     print(f"✅ Рабочих ключей: {len(working_configs)}", flush=True)
     
-    white = defaultdict(list)
-    black = defaultdict(list)
+    # Разделяем на Lite (бывшие белые) и Full (бывшие черные)
+    lite_configs = []   # то что было white
+    full_configs = []   # то что было black
     
     for line in working_configs:
         match = re.search(r'#(.+)$', line)
         if not match:
+            # Если нет имени, отправляем в Full как есть
+            full_configs.append(line)
             continue
         name = match.group(1)
-        flag, country = extract_flag_and_country(name)
         is_white = check_white(name)
         if is_white:
-            white[(flag, country)].append(line)
+            lite_configs.append(line)
         else:
-            black[(flag, country)].append(line)
+            full_configs.append(line)
     
     result_lines = []
     
-    if white:
-        result_lines.append("🏳️ Белые списки")
+    # Сортируем Lite по странам (как было с белыми)
+    if lite_configs:
+        lite_by_country = defaultdict(list)
+        for line in lite_configs:
+            match = re.search(r'#(.+)$', line)
+            if match:
+                name = match.group(1)
+                flag, country = extract_flag_and_country(name)
+                lite_by_country[(flag, country)].append(line)
+            else:
+                lite_by_country[("🌍", "Неизвестно")].append(line)
+        
+        result_lines.append("🏳️ Lite (оптимизированный режим)")
         result_lines.append("")
         idx = 1
-        for (flag, country), lines in sorted(white.items(), key=lambda x: x[0][1]):
+        for (flag, country), lines in sorted(lite_by_country.items(), key=lambda x: x[0][1]):
             result_lines.append(f"{flag} {country}")
             for line in lines:
-                new_name = f"{flag}{country} {idx:03d} {CHANNEL_TAG}"
+                new_name = f"Lite #{idx:03d} {CHANNEL_TAG}"
                 new_line = re.sub(r'#.+$', f'#{new_name}', line)
                 result_lines.append(new_line)
                 idx += 1
             result_lines.append("")
     
-    if black:
-        result_lines.append("🏴 Чёрные списки")
+    # Full без группировки по странам (как было с черными)
+    if full_configs:
+        result_lines.append("🏴 Full (полный доступ)")
         result_lines.append("")
         idx = 1
-        for (flag, country), lines in sorted(black.items(), key=lambda x: x[0][1]):
-            for line in lines:
-                new_name = f"{flag}{country} {idx:03d} {CHANNEL_TAG}"
-                new_line = re.sub(r'#.+$', f'#{new_name}', line)
-                result_lines.append(new_line)
-                idx += 1
-            result_lines.append("")
+        for line in full_configs:
+            new_name = f"Full #{idx:03d} {CHANNEL_TAG}"
+            new_line = re.sub(r'#.+$', f'#{new_name}', line)
+            result_lines.append(new_line)
+            idx += 1
+        result_lines.append("")
     
+    # Создаем папку если нет
     os.makedirs('subscriptions', exist_ok=True)
     output_text = '\n'.join(result_lines)
     
+    # Сохраняем plain текст
     with open('subscriptions/FreeCFGHub.txt', 'w', encoding='utf-8') as f:
         f.write(output_text)
     
+    # Сохраняем base64 (сразу, без задержки)
     if output_text.strip():
         b64 = base64.b64encode(output_text.encode('utf-8')).decode('utf-8')
         with open('subscriptions/all_base64.txt', 'w', encoding='utf-8') as f:
             f.write(b64)
         print(f"✅ Сохранено {len(working_configs)} ключей", flush=True)
+        print(f"   Lite: {len(lite_configs)}, Full: {len(full_configs)}", flush=True)
     
     print("✅ Готово", flush=True)
 
