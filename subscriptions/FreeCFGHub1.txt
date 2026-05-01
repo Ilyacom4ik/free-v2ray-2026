@@ -4,7 +4,6 @@
 #support-url: https://t.me/FreeCFGHub
 #announce: 🚀 FreeCFGHub — всё для свободного интернета 🔥 Свежие VLESS-ключи каждый день. Всё бесплатно! ❤️(Lite - 🏳)(Full - 🏴)
 #subscription-userinfo: upload=0; download=0; total=0; expire=2208729600
-
 vless://aed996ff-eca0-4d4a-b2f3-01362ec4d48d@5.42.112.224:2443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=vk.com&fp=chrome&pbk=NGXEKZXsnI0yWLAG4Qj6XKSVkDpqN_UaKsW5yJPMBUc&sid=b8960f8a008648c1&type=tcp&headerType=none#Lite #001 @FreeCFGHub
 vless://bcb1d557-85e4-4dc2-b051-3dfb0defea0a@147.45.44.126:8443?encryption=none&security=reality&sni=m.vk.com&fp=chrome&pbk=G_RqCTuul0T90d2vSlUqtrm1mZnfN1kKq5h22TLEzko&sid=dd98aa&type=grpc#Lite #002 @FreeCFGHub
 vless://229b1518-a97a-4f48-929f-d3b5f44cf1cf@213.171.6.2:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.vk.com&fp=qq&pbk=ttsVoUC92pflcL2ePK8Ne_qzC2UZvxstL7VPlfK4l28&type=tcp&headerType=none#Lite #003 @FreeCFGHub
@@ -55,8 +54,6 @@ vless://b58a4390-6aba-451a-8010-61916ebe6bb3@111.88.146.74:25462?encryption=none
 vless://b6ce8a51-19b9-4979-91ba-b4298c26d5fc@89.208.230.199:8443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=api-maps.yandex.ru&fp=qq&pbk=mAu8QDi3pbmMCFg9kKC-ZBIHdtnXeCuZt3VnAw6vlH4&sid=ad7dab462a323acb&type=tcp&headerType=none#Lite #048 @FreeCFGHub
 vless://7d3aad33-021a-40f7-981b-7ec29d7fc159@84.201.168.241:853?encryption=none&security=reality&sni=maps.yandex.ru&fp=randomized&pbk=A8y_UFyYYObEfIIag9EtvqOjVb--zEUAoc2JtTR_7XY&sid=3653560f50a8cddb&type=xhttp&path=%2Fapi%2Fv1%2Ftiles%2Frender&mode=auto&extra=%7BscMaxEachPostBytes%3A%2B1000000%2C%2BscMaxConcurrentPosts%3A%2B100%2C%2BscMinPostsIntervalMs%3A%2B30%2C%2BxPaddingBytes%3A%2B100-1000%2C%2BnoGRPCHeader%3A%2Btrue%2C%2BkeepAlivePeriod%3A%2B60%7D#Lite #049 @FreeCFGHub
 vless://7d3aad33-021a-40f7-981b-7ec29d7fc159@84.201.168.241:853?encryption=none&security=reality&sni=maps.yandex.ru&fp=randomized&pbk=A8y_UFyYYObEfIIag9EtvqOjVb--zEUAoc2JtTR_7XY&sid=3653560f50a8cddb&type=xhttp&path=%2Fapi%2Fv1%2Ftiles%2Frender&mode=auto&extra=%7B%22scMaxEachPostBytes%22%3A%2B1000000%2C%2B%22scMaxConcurrentPosts%22%3A%2B100%2C%2B%22scMinPostsIntervalMs%22%3A%2B30%2C%2B%22xPaddingBytes%22%3A%2B%22100-1000%22%2C%2B%22noGRPCHeader%22%3A%2Btrue%2C%2B%22keepAlivePeriod%22%3A%2B60%7D#Lite #050 @FreeCFGHub
-🏴 Full (общий доступ)
-
 vless://75807638-6f19-07d0-ae08-38492ee85c88@cl-ru-1.edgeflux.ru:52006?encryption=none&flow=xtls-rprx-vision&security=tls&fp=chrome&insecure=1&allowInsecure=1&type=tcp&headerType=none#Full #001 @FreeCFGHub
 vless://75807638-6f19-07d0-ae08-38492ee85c88@cl-ru-2.edgeflux.ru:52006?encryption=none&flow=xtls-rprx-vision&security=tls&sni=cl-ru-2.edgeflux.ru&fp=chrome&insecure=1&allowInsecure=1&type=tcp&headerType=none",#Full #002 @FreeCFGHub
 vless://75807638-6f19-07d0-ae08-38492ee85c88@cl-ru-2.edgeflux.ru:52006?encryption=none&flow=xtls-rprx-vision&security=tls&sni=cl-ru-2.edgeflux.ru&insecure=1&allowInsecure=1&type=tcp&headerType=none#Full #003 @FreeCFGHub
