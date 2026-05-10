@@ -1,0 +1,37 @@
+name: Notify on FreeCFGHub1 update
+on:
+  push:
+    branches:
+      - main  # только основная ветка
+    paths:
+      - 'subscriptions/FreeCFGHub1.txt'
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Notify Telegram
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+        run: |
+          python - <<'EOF'
+          import os, requests
+          token = os.environ['TG_BOT_TOKEN']
+          chat = os.environ['TG_CHAT_ID']
+          try:
+              with open('subscriptions/FreeCFGHub1.txt', 'r', encoding='utf-8') as f:
+                  lines = [l.strip() for l in f if l.strip().startswith(('vless://', 'vmess://', 'trojan://', 'ss://'))]
+              count = len(lines)
+          except:
+              count = 0
+          text = (
+              f"🔄 <b>Подписка обновлена!</b>\n\n"
+              f"✅ Рабочих ключей: {count}\n\n"
+              f"📢 @FreeCFGHub"
+          )
+          requests.post(
+              f"https://api.telegram.org/bot{token}/sendMessage",
+              json={"chat_id": chat, "text": text, "parse_mode": "HTML"})
+          EOF
