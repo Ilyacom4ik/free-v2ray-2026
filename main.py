@@ -1,21 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import json
+import sys
 import requests
 import base64
 import re
 import os
-import socket
-from concurrent.futures import ThreadPoolExecutor, as_completed
+import json
 from collections import defaultdict
-from urllib.parse import urlparse
 
 print("DEBUG: скрипт запущен", flush=True)
 
 CHANNEL_TAG = "@FreeCFGHub"
-CHECK_TIMEOUT = 3
-CHECK_WORKERS = 100
 
 WHITE_KEYWORDS = [
     r'\[\*CIDR\]', r'Lite', r'Белые?\s*списки?', r'White\s*List', r'WL'
@@ -50,81 +46,13 @@ def fetch_from_url(url):
         print(f"Исключение при {url}: {e}")
     return configs
 
-def extract_uuid(config):
-    try:
-        clean = config.split('#')[0]
-        parsed = urlparse(clean)
-        uuid = parsed.username
-        if uuid and re.match(r'^[0-9a-f-]{36}$', uuid, re.IGNORECASE):
-            host = parsed.hostname
-            port = parsed.port
-            return f"{uuid}@{host}:{port}"
-    except Exception:
-        pass
-    return None
-
-def deduplicate(configs):
-    unique = []
-    seen_uuids = set()
-    seen_raw = set()
-    for config in configs:
-        uid = extract_uuid(config)
-        if uid:
-            if uid not in seen_uuids:
-                seen_uuids.add(uid)
-                unique.append(config)
-        else:
-            raw = config.split('#')[0].strip()
-            if raw not in seen_raw:
-                seen_raw.add(raw)
-                unique.append(config)
-    return unique
-
-def parse_host_port(config):
-    try:
-        clean = config.split('#')[0].strip()
-        parsed = urlparse(clean)
-        return parsed.hostname, parsed.port
-    except Exception:
-        return None, None
-
-def check_key(config):
-    host, port = parse_host_port(config)
-    if not host or not port:
-        return False
-    try:
-        sock = socket.create_connection((host, port), timeout=CHECK_TIMEOUT)
-        sock.close()
-        return True
-    except (socket.timeout, ConnectionRefusedError, OSError):
-        return False
-
-def check_all_keys(configs):
-    alive = []
-    total = len(configs)
-    done = 0
-    print(f"🔍 Проверка {total} ключей (потоков: {CHECK_WORKERS}, таймаут: {CHECK_TIMEOUT}s)...", flush=True)
-    with ThreadPoolExecutor(max_workers=CHECK_WORKERS) as executor:
-        future_to_config = {executor.submit(check_key, cfg): cfg for cfg in configs}
-        for future in as_completed(future_to_config):
-            cfg = future_to_config[future]
-            done += 1
-            try:
-                ok = future.result()
-            except Exception:
-                ok = False
-            if ok:
-                alive.append(cfg)
-            if done % 50 == 0 or done == total:
-                print(f"   [{done}/{total}] живых: {len(alive)}", flush=True)
-    return alive
-
 def check_white(name):
     for pattern in WHITE_KEYWORDS:
         if re.search(pattern, name, re.IGNORECASE):
             return True
     return False
 
+# Словарь стран
 COUNTRY_MAP = {
     "RU": ("🇷🇺", "Россия"), "DE": ("🇩🇪", "Германия"), "NL": ("🇳🇱", "Нидерланды"),
     "FR": ("🇫🇷", "Франция"), "FI": ("🇫🇮", "Финляндия"), "SE": ("🇸🇪", "Швеция"),
@@ -153,24 +81,13 @@ def extract_flag_and_country(name):
     for code, (flag, country) in COUNTRY_MAP.items():
         if country.lower() in name_lower:
             return flag, country
-    eng_names = {
-        "russia": ("🇷🇺", "Россия"), "germany": ("🇩🇪", "Германия"),
-        "netherlands": ("🇳🇱", "Нидерланды"), "france": ("🇫🇷", "Франция"),
-        "finland": ("🇫🇮", "Финляндия"), "sweden": ("🇸🇪", "Швеция"),
-        "poland": ("🇵🇱", "Польша"), "ukraine": ("🇺🇦", "Украина"),
-        "usa": ("🇺🇸", "США"), "japan": ("🇯🇵", "Япония"),
-        "turkey": ("🇹🇷", "Турция"), "kazakhstan": ("🇰🇿", "Казахстан"),
-    }
-    for eng, (flag, country) in eng_names.items():
-        if eng in name_lower:
-            return flag, country
     return "🌍", "Неизвестно"
 
 def main():
-    print("🚀 Запуск", flush=True)
+    print("🚀 Запуск (только удаление дубликатов, без проверки)", flush=True)
     script_dir = os.path.dirname(os.path.abspath(__file__))
     sources_path = os.path.join(script_dir, 'sources.txt')
-
+    
     try:
         with open(sources_path, 'r', encoding='utf-8') as f:
             sources = [line.strip() for line in f if line.strip() and not line.startswith('#')]
@@ -179,6 +96,7 @@ def main():
         print("❌ sources.txt не найден", flush=True)
         return
 
+    # Собираем все конфиги
     all_configs = []
     for url in sources:
         print(f"📥 Загрузка: {url}", flush=True)
@@ -186,32 +104,45 @@ def main():
         print(f"   Получено: {len(configs)}", flush=True)
         all_configs.extend(configs)
 
-    unique_configs = deduplicate(all_configs)
-    print(f"📊 Уникальных: {len(unique_configs)} (дубликатов удалено: {len(all_configs) - len(unique_configs)})", flush=True)
+    # Удаляем дубликаты
+    unique_configs = []
+    seen = set()
+    for config in all_configs:
+        if config not in seen:
+            seen.add(config)
+            unique_configs.append(config)
+    
+    print(f"📊 Уникальных: {len(unique_configs)} (дубликатов: {len(all_configs) - len(unique_configs)})", flush=True)
 
-    alive_configs = check_all_keys(unique_configs)
-    print(f"✅ Живых: {len(alive_configs)} | ❌ Мёртвых: {len(unique_configs) - len(alive_configs)}", flush=True)
-
+    # Разделяем на Lite и Full
     lite_configs = []
     full_configs = []
-    for line in alive_configs:
+    
+    for line in unique_configs:
         match = re.search(r'#(.+)$', line)
-        name = match.group(1) if match else ""
+        if not match:
+            full_configs.append(line)
+            continue
+        name = match.group(1)
         if check_white(name):
             lite_configs.append(line)
         else:
             full_configs.append(line)
-
+    
     result_lines = []
-
+    
+    # Формируем Lite раздел (с группировкой по странам)
     if lite_configs:
         lite_by_country = defaultdict(list)
         for line in lite_configs:
             match = re.search(r'#(.+)$', line)
-            name = match.group(1) if match else ""
-            flag, country = extract_flag_and_country(name)
-            lite_by_country[(flag, country)].append(line)
-
+            if match:
+                name = match.group(1)
+                flag, country = extract_flag_and_country(name)
+                lite_by_country[(flag, country)].append(line)
+            else:
+                lite_by_country[("🌍", "Неизвестно")].append(line)
+        
         result_lines.append("🏳️ Lite (оптимизированный режим)")
         result_lines.append("")
         idx = 1
@@ -223,7 +154,8 @@ def main():
                 result_lines.append(new_line)
                 idx += 1
             result_lines.append("")
-
+    
+    # Формируем Full раздел (без группировки по странам)
     if full_configs:
         result_lines.append("🏴 Full (полный доступ)")
         result_lines.append("")
@@ -234,47 +166,56 @@ def main():
             result_lines.append(new_line)
             idx += 1
         result_lines.append("")
-
+    
+    # Создаём папку
     os.makedirs('subscriptions', exist_ok=True)
     output_text = '\n'.join(result_lines)
-
+    
+    # Сохраняем plain текст
     with open('subscriptions/FreeCFGHub.txt', 'w', encoding='utf-8') as f:
         f.write(output_text)
-
+    
+    # Сохраняем base64
     if output_text.strip():
         b64 = base64.b64encode(output_text.encode('utf-8')).decode('utf-8')
         with open('subscriptions/all_base64.txt', 'w', encoding='utf-8') as f:
             f.write(b64)
-
-    # Сохраняем JSON для бота
-    bot_data = {"lite": {}, "full": {}}
-
-    lite_by_country2 = defaultdict(list)
+        print(f"✅ Сохранено {len(unique_configs)} ключей", flush=True)
+        print(f"   Lite: {len(lite_configs)}, Full: {len(full_configs)}", flush=True)
+    
+    # ========== СОЗДАЁМ JSON ДЛЯ БОТА ==========
+    # Группируем по странам для бота
+    lite_for_bot = defaultdict(list)
+    full_for_bot = defaultdict(list)
+    
     for line in lite_configs:
         match = re.search(r'#(.+)$', line)
-        name = match.group(1) if match else ""
-        flag, country = extract_flag_and_country(name)
-        key = f"{flag} {country}"
-        lite_by_country2[key].append(line)
-    bot_data["lite"] = dict(lite_by_country2)
-
-    full_by_country = defaultdict(list)
+        if match:
+            name = match.group(1)
+            flag, country = extract_flag_and_country(name)
+            display = f"{flag} {country}"
+            lite_for_bot[display].append(line)
+    
     for line in full_configs:
         match = re.search(r'#(.+)$', line)
-        name = match.group(1) if match else ""
-        flag, country = extract_flag_and_country(name)
-        key = f"{flag} {country}"
-        full_by_country[key].append(line)
-    bot_data["full"] = dict(full_by_country)
-
+        if match:
+            name = match.group(1)
+            flag, country = extract_flag_and_country(name)
+            display = f"{flag} {country}"
+            full_for_bot[display].append(line)
+        else:
+            full_for_bot["🌍 Неизвестно"].append(line)
+    
+    keys_by_country = {
+        "lite": dict(lite_for_bot),
+        "full": dict(full_for_bot)
+    }
+    
     with open('subscriptions/keys_by_country.json', 'w', encoding='utf-8') as f:
-        json.dump(bot_data, f, ensure_ascii=False)
-
-    stats_text = f"✅ Живых ключей: {len(alive_configs)}\n🏳️ Lite: {len(lite_configs)}\n🏴 Full: {len(full_configs)}"
-    with open('subscriptions/stats.txt', 'w', encoding='utf-8') as f:
-        f.write(stats_text)
-
-    print(f"✅ Готово | Lite: {len(lite_configs)} | Full: {len(full_configs)}", flush=True)
+        json.dump(keys_by_country, f, ensure_ascii=False, indent=2)
+    
+    print("✅ keys_by_country.json создан", flush=True)
+    print("✅ Готово", flush=True)
 
 if __name__ == '__main__':
     main()
