@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import json
 import requests
 import base64
 import re
@@ -50,25 +51,22 @@ def fetch_from_url(url):
     return configs
 
 def extract_uuid(config):
-    """Извлекает UUID из vless/vmess URI для дедупликации"""
     try:
         clean = config.split('#')[0]
         parsed = urlparse(clean)
-        uuid = parsed.username  # в vless://UUID@host:port — UUID это username
+        uuid = parsed.username
         if uuid and re.match(r'^[0-9a-f-]{36}$', uuid, re.IGNORECASE):
             host = parsed.hostname
             port = parsed.port
-            return f"{uuid}@{host}:{port}"  # уникальный ключ = UUID + сервер
+            return f"{uuid}@{host}:{port}"
     except Exception:
         pass
     return None
 
 def deduplicate(configs):
-    """Дедупликация по UUID+хост+порт, fallback — по полной строке"""
     unique = []
     seen_uuids = set()
     seen_raw = set()
-
     for config in configs:
         uid = extract_uuid(config)
         if uid:
@@ -76,11 +74,10 @@ def deduplicate(configs):
                 seen_uuids.add(uid)
                 unique.append(config)
         else:
-            raw = config.split('#')[0].strip()  # сравниваем без названия
+            raw = config.split('#')[0].strip()
             if raw not in seen_raw:
                 seen_raw.add(raw)
                 unique.append(config)
-
     return unique
 
 def parse_host_port(config):
@@ -106,9 +103,7 @@ def check_all_keys(configs):
     alive = []
     total = len(configs)
     done = 0
-
     print(f"🔍 Проверка {total} ключей (потоков: {CHECK_WORKERS}, таймаут: {CHECK_TIMEOUT}s)...", flush=True)
-
     with ThreadPoolExecutor(max_workers=CHECK_WORKERS) as executor:
         future_to_config = {executor.submit(check_key, cfg): cfg for cfg in configs}
         for future in as_completed(future_to_config):
@@ -122,7 +117,6 @@ def check_all_keys(configs):
                 alive.append(cfg)
             if done % 50 == 0 or done == total:
                 print(f"   [{done}/{total}] живых: {len(alive)}", flush=True)
-
     return alive
 
 def check_white(name):
@@ -192,15 +186,12 @@ def main():
         print(f"   Получено: {len(configs)}", flush=True)
         all_configs.extend(configs)
 
-    # Дедупликация по UUID+хост+порт
     unique_configs = deduplicate(all_configs)
     print(f"📊 Уникальных: {len(unique_configs)} (дубликатов удалено: {len(all_configs) - len(unique_configs)})", flush=True)
 
-    # Проверка живых
     alive_configs = check_all_keys(unique_configs)
     print(f"✅ Живых: {len(alive_configs)} | ❌ Мёртвых: {len(unique_configs) - len(alive_configs)}", flush=True)
 
-    # Разделяем на Lite / Full
     lite_configs = []
     full_configs = []
     for line in alive_configs:
@@ -254,6 +245,34 @@ def main():
         b64 = base64.b64encode(output_text.encode('utf-8')).decode('utf-8')
         with open('subscriptions/all_base64.txt', 'w', encoding='utf-8') as f:
             f.write(b64)
+
+    # Сохраняем JSON для бота
+    bot_data = {"lite": {}, "full": {}}
+
+    lite_by_country2 = defaultdict(list)
+    for line in lite_configs:
+        match = re.search(r'#(.+)$', line)
+        name = match.group(1) if match else ""
+        flag, country = extract_flag_and_country(name)
+        key = f"{flag} {country}"
+        lite_by_country2[key].append(line)
+    bot_data["lite"] = dict(lite_by_country2)
+
+    full_by_country = defaultdict(list)
+    for line in full_configs:
+        match = re.search(r'#(.+)$', line)
+        name = match.group(1) if match else ""
+        flag, country = extract_flag_and_country(name)
+        key = f"{flag} {country}"
+        full_by_country[key].append(line)
+    bot_data["full"] = dict(full_by_country)
+
+    with open('subscriptions/keys_by_country.json', 'w', encoding='utf-8') as f:
+        json.dump(bot_data, f, ensure_ascii=False)
+
+    stats_text = f"✅ Живых ключей: {len(alive_configs)}\n🏳️ Lite: {len(lite_configs)}\n🏴 Full: {len(full_configs)}"
+    with open('subscriptions/stats.txt', 'w', encoding='utf-8') as f:
+        f.write(stats_text)
 
     print(f"✅ Готово | Lite: {len(lite_configs)} | Full: {len(full_configs)}", flush=True)
 
