@@ -12,8 +12,11 @@ SUBSCRIPTION_URL = "https://raw.githubusercontent.com/Ilyacom4ik/vpn-keys/refs/h
 
 MAX_KEYS_PER_REQUEST = 5
 
-# Текст поддержки (только карта Сбера)
-SUPPORT_TEXT = (
+# Ссылка на пост с донатом (твоя)
+DONATE_POST_URL = "https://t.me/FreeCFGHub/328"
+
+# Текст для команды /donate
+DONATE_TEXT = (
     "❤️ <b>Поддержать проект</b>\n\n"
     "Спасибо, что хотите помочь! Ваша поддержка помогает серверам работать.\n\n"
     "💳 <b>Карта Сбера:</b>\n"
@@ -40,11 +43,17 @@ def answer_callback(callback_id, text=""):
         "text": text
     })
 
-def add_support_link(text):
-    """Добавляет синюю ссылку поддержки в конец сообщения"""
-    if "Поддержать проект ✨" in text:
-        return text
-    return text + "\n\n<a href='https://t.me/FreeCFGHub?start=support'>✨ Поддержать проект ✨</a>"
+def set_bot_commands():
+    """Устанавливает кнопки меню снизу (команды)"""
+    commands = [
+        {"command": "start", "description": "🏠 Главное меню"},
+        {"command": "keys", "description": "🔑 Получить ключи"},
+        {"command": "status", "description": "📡 Статус"},
+        {"command": "donate", "description": "❤️ Поддержать"}
+    ]
+    url = f"{API}/setMyCommands"
+    requests.post(url, json={"commands": commands})
+    print("✅ Кнопки меню установлены", flush=True)
 
 def fetch_and_parse_keys():
     """Парсит подписку, ищет Lite и Full по ключевым словам"""
@@ -117,12 +126,12 @@ def get_status():
     except Exception as e:
         return f"❌ Ошибка: {e}"
 
-def send_support_info(chat_id):
-    """Отправляет информацию о поддержке (только карта)"""
-    send_message(chat_id, SUPPORT_TEXT)
-
 def main():
     print("🤖 Бот запущен", flush=True)
+    
+    # Устанавливаем кнопки меню снизу
+    set_bot_commands()
+    
     offset = None
     
     while True:
@@ -138,27 +147,24 @@ def main():
                 if not chat_id:
                     continue
 
-                # Обработка /start с параметром support
-                if text == "/start" or text.startswith("/start "):
-                    if "start=support" in text:
-                        send_support_info(chat_id)
-                        continue
-                    
-                    send_message(chat_id, add_support_link(
-                        "👋 Привет!\n\n"
-                        "Я выдаю VPN-ключи из подписки @FreeCFGHub\n\n"
-                        "/keys — получить случайные ключи\n"
-                        "/status — статус подписки\n"
-                        "/donate — поддержать проект"
-                    ))
+                if text == "/start":
+                    send_message(chat_id,
+                        f"👋 Привет!\n\n"
+                        f"Я выдаю VPN-ключи из подписки @FreeCFGHub\n\n"
+                        f"Используй кнопки в меню снизу 👇\n\n"
+                        f"🔑 /keys — получить ключи\n"
+                        f"📡 /status — статус подписки\n"
+                        f"❤️ /donate — поддержать проект\n\n"
+                        f"✨ <a href='{DONATE_POST_URL}'>Поддержать проект ✨</a>"
+                    )
 
                 elif text == "/status":
                     send_message(chat_id, "⏳ Проверяю...")
-                    send_message(chat_id, add_support_link(get_status()))
+                    send_message(chat_id, get_status())
 
                 elif text == "/keys":
                     send_message(chat_id,
-                        add_support_link("Выберите тип ключей:"),
+                        "Выберите тип ключей:",
                         reply_markup={
                             "inline_keyboard": [
                                 [
@@ -170,7 +176,7 @@ def main():
                     )
                 
                 elif text == "/donate":
-                    send_support_info(chat_id)
+                    send_message(chat_id, DONATE_TEXT)
 
             elif "callback_query" in update:
                 cb = update["callback_query"]
@@ -183,12 +189,12 @@ def main():
                     
                     keys_data, error = fetch_and_parse_keys()
                     if error:
-                        send_message(chat_id, add_support_link(f"❌ Ошибка: {error}"))
+                        send_message(chat_id, f"❌ Ошибка: {error}")
                         continue
                     
                     keys_list = keys_data.get(key_type, [])
                     if not keys_list:
-                        send_message(chat_id, add_support_link(f"❌ Ключей типа {key_type} не найдено"))
+                        send_message(chat_id, f"❌ Ключей типа {key_type} не найдено")
                         continue
                     
                     selected = get_random_keys(keys_list)
@@ -196,9 +202,9 @@ def main():
                     
                     keys_block = "\n\n".join([f"<code>{k}</code>" for k in selected])
                     
-                    send_message(chat_id, add_support_link(
+                    send_message(chat_id,
                         f"🔑 <b>{type_name} — {len(selected)} ключей</b>\n\n{keys_block}\n\n📢 @FreeCFGHub"
-                    ))
+                    )
 
 if __name__ == '__main__':
     main()
