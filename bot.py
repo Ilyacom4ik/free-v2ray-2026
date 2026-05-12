@@ -10,7 +10,16 @@ API = f"https://api.telegram.org/bot{BOT_TOKEN}"
 
 SUBSCRIPTION_URL = "https://raw.githubusercontent.com/Ilyacom4ik/vpn-keys/refs/heads/main/allkeysFreeCFGHub.txt"
 
-MAX_KEYS_PER_REQUEST = 5  # сколько ключей выдавать за раз
+MAX_KEYS_PER_REQUEST = 5
+
+# Текст поддержки (только карта Сбера)
+SUPPORT_TEXT = (
+    "❤️ <b>Поддержать проект</b>\n\n"
+    "Спасибо, что хотите помочь! Ваша поддержка помогает серверам работать.\n\n"
+    "💳 <b>Карта Сбера:</b>\n"
+    "<code>2202 2068 1475 8129</code>\n\n"
+    "📢 @FreeCFGHub"
+)
 
 def get_updates(offset=None):
     params = {"timeout": 30}
@@ -31,8 +40,14 @@ def answer_callback(callback_id, text=""):
         "text": text
     })
 
+def add_support_link(text):
+    """Добавляет синюю ссылку поддержки в конец сообщения"""
+    if "Поддержать проект ✨" in text:
+        return text
+    return text + "\n\n<a href='https://t.me/FreeCFGHub?start=support'>✨ Поддержать проект ✨</a>"
+
 def fetch_and_parse_keys():
-    """Парсит подписку прямо с GitHub, разделяет на Lite и Full"""
+    """Парсит подписку, ищет Lite и Full по ключевым словам"""
     try:
         r = requests.get(SUBSCRIPTION_URL, timeout=15)
         if r.status_code != 200:
@@ -50,42 +65,40 @@ def fetch_and_parse_keys():
             if not line:
                 continue
             
-            # Определяем категорию по заголовкам
-            if "🏳️ Lite" in line:
+            if "Lite" in line:
                 current_category = "lite"
                 continue
-            elif "🏴 Full" in line:
+            elif "Full" in line:
                 current_category = "full"
                 continue
             
-            # Пропускаем комментарии и пустые строки
-            if line.startswith('#') or line.startswith('//') or line.startswith('```'):
+            if line.startswith('#'):
                 continue
             
-            # Если строка начинается с протокола — это ключ
             if re.match(r'^(vless|vmess|trojan|ss|tuic|hysteria2)://', line):
                 if current_category == "lite":
                     lite_keys.append(line)
                 elif current_category == "full":
                     full_keys.append(line)
-                # Если категория не определена, кидаем в full как запасной вариант
                 elif current_category is None:
-                    full_keys.append(line)
+                    if "Lite" in line:
+                        lite_keys.append(line)
+                    else:
+                        full_keys.append(line)
         
+        print(f"DEBUG: Lite: {len(lite_keys)}, Full: {len(full_keys)}", flush=True)
         return {"lite": lite_keys, "full": full_keys}, None
         
     except Exception as e:
         return None, str(e)
 
 def get_random_keys(keys_list, count=MAX_KEYS_PER_REQUEST):
-    """Возвращает случайные ключи из списка"""
     if not keys_list:
         return []
     count = min(count, len(keys_list))
     return random.sample(keys_list, count)
 
 def get_status():
-    """Возвращает статус подписки (количество Lite и Full ключей)"""
     try:
         keys_data, error = fetch_and_parse_keys()
         if error:
@@ -98,11 +111,15 @@ def get_status():
             f"📊 <b>Статус подписки</b>\n\n"
             f"🏳️ Lite ключей: {lite_count}\n"
             f"🏴 Full ключей: {full_count}\n\n"
-            f"🔄 Обновляется каждые 6 часов\n\n"
+            f"🔄 Обновляется каждый день\n\n"
             f"📢 @FreeCFGHub"
         )
     except Exception as e:
         return f"❌ Ошибка: {e}"
+
+def send_support_info(chat_id):
+    """Отправляет информацию о поддержке (только карта)"""
+    send_message(chat_id, SUPPORT_TEXT)
 
 def main():
     print("🤖 Бот запущен", flush=True)
@@ -121,30 +138,39 @@ def main():
                 if not chat_id:
                     continue
 
-                if text == "/start":
-                    send_message(chat_id,
+                # Обработка /start с параметром support
+                if text == "/start" or text.startswith("/start "):
+                    if "start=support" in text:
+                        send_support_info(chat_id)
+                        continue
+                    
+                    send_message(chat_id, add_support_link(
                         "👋 Привет!\n\n"
                         "Я выдаю VPN-ключи из подписки @FreeCFGHub\n\n"
                         "/keys — получить случайные ключи\n"
-                        "/status — статус подписки"
-                    )
+                        "/status — статус подписки\n"
+                        "/donate — поддержать проект"
+                    ))
 
                 elif text == "/status":
                     send_message(chat_id, "⏳ Проверяю...")
-                    send_message(chat_id, get_status())
+                    send_message(chat_id, add_support_link(get_status()))
 
                 elif text == "/keys":
                     send_message(chat_id,
-                        "Выберите тип ключей:",
+                        add_support_link("Выберите тип ключей:"),
                         reply_markup={
                             "inline_keyboard": [
                                 [
-                                    {"text": "🏳️ Lite (оптимизированный)", "callback_data": "get:lite"},
-                                    {"text": "🏴 Full (полный доступ)", "callback_data": "get:full"}
+                                    {"text": "🏳️ Lite", "callback_data": "get:lite"},
+                                    {"text": "🏴 Full", "callback_data": "get:full"}
                                 ]
                             ]
                         }
                     )
+                
+                elif text == "/donate":
+                    send_support_info(chat_id)
 
             elif "callback_query" in update:
                 cb = update["callback_query"]
@@ -153,29 +179,26 @@ def main():
                 answer_callback(cb["id"])
 
                 if data.startswith("get:"):
-                    key_type = data.split(":")[1]  # lite или full
+                    key_type = data.split(":")[1]
                     
                     keys_data, error = fetch_and_parse_keys()
                     if error:
-                        send_message(chat_id, f"❌ Ошибка: {error}")
+                        send_message(chat_id, add_support_link(f"❌ Ошибка: {error}"))
                         continue
                     
                     keys_list = keys_data.get(key_type, [])
                     if not keys_list:
-                        send_message(chat_id, f"❌ Ключей типа {key_type} не найдено")
+                        send_message(chat_id, add_support_link(f"❌ Ключей типа {key_type} не найдено"))
                         continue
                     
                     selected = get_random_keys(keys_list)
                     type_name = "Lite 🏳️" if key_type == "lite" else "Full 🏴"
                     
-                    # Форматируем ключи для удобного копирования
                     keys_block = "\n\n".join([f"<code>{k}</code>" for k in selected])
                     
-                    send_message(chat_id,
-                        f"🔑 <b>{type_name} — {len(selected)} ключей</b>\n\n"
-                        f"{keys_block}\n\n"
-                        f"📢 @FreeCFGHub"
-                    )
+                    send_message(chat_id, add_support_link(
+                        f"🔑 <b>{type_name} — {len(selected)} ключей</b>\n\n{keys_block}\n\n📢 @FreeCFGHub"
+                    ))
 
 if __name__ == '__main__':
     main()
