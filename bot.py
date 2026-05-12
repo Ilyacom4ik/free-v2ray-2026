@@ -56,7 +56,7 @@ def set_bot_commands():
     print("✅ Кнопки меню установлены", flush=True)
 
 def fetch_and_parse_keys():
-    """Парсит подписку, ищет Lite и Full по ключевым словам"""
+    """Парсит подписку, ищет Lite и Full по ключевым словам (без флагов)"""
     try:
         r = requests.get(SUBSCRIPTION_URL, timeout=15)
         if r.status_code != 200:
@@ -67,35 +67,29 @@ def fetch_and_parse_keys():
         
         lite_keys = []
         full_keys = []
-        current_category = None
         
         for line in lines:
             line = line.strip()
             if not line:
                 continue
             
-            if "Lite" in line:
-                current_category = "lite"
-                continue
-            elif "Full" in line:
-                current_category = "full"
-                continue
-            
+            # Пропускаем строки, которые начинаются с # (комментарии)
             if line.startswith('#'):
                 continue
             
+            # Проверяем, является ли строка валидным ключом (любой протокол)
             if re.match(r'^(vless|vmess|trojan|ss|tuic|hysteria2)://', line):
-                if current_category == "lite":
+                # Если в строке есть слово Lite (без учёта регистра) — это lite
+                if re.search(r'\bLite\b', line, re.IGNORECASE):
                     lite_keys.append(line)
-                elif current_category == "full":
+                # Если в строке есть слово Full — это full
+                elif re.search(r'\bFull\b', line, re.IGNORECASE):
                     full_keys.append(line)
-                elif current_category is None:
-                    if "Lite" in line:
-                        lite_keys.append(line)
-                    else:
-                        full_keys.append(line)
+                # Если ничего не нашли, отправляем в full (на всякий случай)
+                else:
+                    full_keys.append(line)
         
-        print(f"DEBUG: Lite: {len(lite_keys)}, Full: {len(full_keys)}", flush=True)
+        print(f"DEBUG: Lite ключей: {len(lite_keys)}, Full ключей: {len(full_keys)}", flush=True)
         return {"lite": lite_keys, "full": full_keys}, None
         
     except Exception as e:
