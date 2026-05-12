@@ -13,7 +13,7 @@ API = f"https://api.telegram.org/bot{BOT_TOKEN}"
 
 CHECK_TIMEOUT = 3
 CHECK_WORKERS = 50
-MAX_KEYS_PER_COUNTRY = 5  # максимум ключей на страну
+MAX_KEYS_PER_COUNTRY = 5
 
 def get_updates(offset=None):
     params = {"timeout": 30}
@@ -113,7 +113,6 @@ def main():
         for update in updates:
             offset = update["update_id"] + 1
 
-            # Обычное сообщение
             if "message" in update:
                 msg = update["message"]
                 chat_id = msg.get("chat", {}).get("id")
@@ -139,14 +138,13 @@ def main():
                         reply_markup={
                             "inline_keyboard": [
                                 [
-                                    {"text": "🏳️ Lite (при БС)", "callback_data": "type:lite"},
-                                    {"text": "🏴 Full (ЧС)", "callback_data": "type:full"}
+                                    {"text": "🏳️ Lite (оптимизированный)", "callback_data": "type:lite"},
+                                    {"text": "🏴 Full (полный доступ)", "callback_data": "type:full"}
                                 ]
                             ]
                         }
                     )
 
-            # Нажатие кнопки
             elif "callback_query" in update:
                 cb = update["callback_query"]
                 chat_id = cb["message"]["chat"]["id"]
@@ -172,16 +170,20 @@ def main():
                         selected = random.sample(all_keys, min(MAX_KEYS_PER_COUNTRY, len(all_keys)))
                     else:
                         keys = country_keys.get(country, [])
+                        if not keys:
+                            send_message(chat_id, "❌ Ключи не найдены")
+                            continue
                         selected = random.sample(keys, min(MAX_KEYS_PER_COUNTRY, len(keys)))
 
                     if not selected:
                         send_message(chat_id, "❌ Ключи не найдены")
                         continue
 
-                    result = "\n".join(selected)
+                    # Форматируем ключи в моноширинный блок для удобного копирования
+                    keys_block = "\n".join([f"`{k}`" for k in selected])
                     send_message(chat_id,
                         f"🔑 <b>{country} — {len(selected)} ключей</b>\n\n"
-                        f"<code>{result}</code>\n\n"
+                        f"{keys_block}\n\n"
                         f"📢 @FreeCFGHub"
                     )
 
@@ -191,8 +193,8 @@ def main():
                         reply_markup={
                             "inline_keyboard": [
                                 [
-                                    {"text": "🏳️ Lite (при БС)", "callback_data": "type:lite"},
-                                    {"text": "🏴 Full (ЧС)", "callback_data": "type:full"}
+                                    {"text": "🏳️ Lite (оптимизированный)", "callback_data": "type:lite"},
+                                    {"text": "🏴 Full (полный доступ)", "callback_data": "type:full"}
                                 ]
                             ]
                         }
