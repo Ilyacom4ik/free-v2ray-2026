@@ -28,6 +28,8 @@ def fetch_from_url(url):
             print(f"Ошибка {r.status_code} для {url}")
             return configs
         text = r.text.strip()
+        
+        # Проверяем base64
         if re.match(r'^[A-Za-z0-9+/=]+$', text) and len(text) > 50:
             try:
                 decoded = base64.b64decode(text).decode('utf-8', errors='ignore')
@@ -36,6 +38,7 @@ def fetch_from_url(url):
                 lines = text.splitlines()
         else:
             lines = text.splitlines()
+        
         for line in lines:
             cleaned = line.strip()
             if not cleaned or cleaned.startswith('#'):
@@ -51,37 +54,6 @@ def check_white(name):
         if re.search(pattern, name, re.IGNORECASE):
             return True
     return False
-
-# Словарь стран
-COUNTRY_MAP = {
-    "RU": ("🇷🇺", "Россия"), "DE": ("🇩🇪", "Германия"), "NL": ("🇳🇱", "Нидерланды"),
-    "FR": ("🇫🇷", "Франция"), "FI": ("🇫🇮", "Финляндия"), "SE": ("🇸🇪", "Швеция"),
-    "NO": ("🇳🇴", "Норвегия"), "DK": ("🇩🇰", "Дания"), "EE": ("🇪🇪", "Эстония"),
-    "LV": ("🇱🇻", "Латвия"), "LT": ("🇱🇹", "Литва"), "PL": ("🇵🇱", "Польша"),
-    "CZ": ("🇨🇿", "Чехия"), "SK": ("🇸🇰", "Словакия"), "HU": ("🇭🇺", "Венгрия"),
-    "AT": ("🇦🇹", "Австрия"), "CH": ("🇨🇭", "Швейцария"), "BE": ("🇧🇪", "Бельгия"),
-    "GB": ("🇬🇧", "Великобритания"), "PT": ("🇵🇹", "Португалия"), "ES": ("🇪🇸", "Испания"),
-    "IT": ("🇮🇹", "Италия"), "GR": ("🇬🇷", "Греция"), "BG": ("🇧🇬", "Болгария"),
-    "RO": ("🇷🇴", "Румыния"), "UA": ("🇺🇦", "Украина"), "BY": ("🇧🇾", "Беларусь"),
-    "KZ": ("🇰🇿", "Казахстан"), "GE": ("🇬🇪", "Грузия"), "AM": ("🇦🇲", "Армения"),
-    "TR": ("🇹🇷", "Турция"), "CN": ("🇨🇳", "Китай"), "HK": ("🇭🇰", "Гонконг"),
-    "JP": ("🇯🇵", "Япония"), "KR": ("🇰🇷", "Южная Корея"), "IN": ("🇮🇳", "Индия"),
-    "SG": ("🇸🇬", "Сингапур"), "ID": ("🇮🇩", "Индонезия"), "MY": ("🇲🇾", "Малайзия"),
-    "TH": ("🇹🇭", "Таиланд"), "VN": ("🇻🇳", "Вьетнам"), "PH": ("🇵🇭", "Филиппины"),
-    "CA": ("🇨🇦", "Канада"), "US": ("🇺🇸", "США"), "MX": ("🇲🇽", "Мексика"),
-    "BR": ("🇧🇷", "Бразилия"), "AR": ("🇦🇷", "Аргентина"), "AU": ("🇦🇺", "Австралия"),
-    "NZ": ("🇳🇿", "Новая Зеландия"), "ZA": ("🇿🇦", "ЮАР"), "EG": ("🇪🇬", "Египет"),
-}
-
-def extract_flag_and_country(name):
-    name_lower = name.lower()
-    for code, (flag, country) in COUNTRY_MAP.items():
-        if code.lower() in name_lower:
-            return flag, country
-    for code, (flag, country) in COUNTRY_MAP.items():
-        if country.lower() in name_lower:
-            return flag, country
-    return "🌍", "Неизвестно"
 
 def main():
     print("🚀 Запуск (только удаление дубликатов, без проверки)", flush=True)
@@ -114,7 +86,7 @@ def main():
     
     print(f"📊 Уникальных: {len(unique_configs)} (дубликатов: {len(all_configs) - len(unique_configs)})", flush=True)
 
-    # Разделяем на Lite и Full
+    # Разделяем на Lite и Full по ключевым словам
     lite_configs = []
     full_configs = []
     
@@ -131,31 +103,19 @@ def main():
     
     result_lines = []
     
-    # Формируем Lite раздел (с группировкой по странам)
+    # Lite раздел
     if lite_configs:
-        lite_by_country = defaultdict(list)
-        for line in lite_configs:
-            match = re.search(r'#(.+)$', line)
-            if match:
-                name = match.group(1)
-                flag, country = extract_flag_and_country(name)
-                lite_by_country[(flag, country)].append(line)
-            else:
-                lite_by_country[("🌍", "Неизвестно")].append(line)
-        
         result_lines.append("🏳️ Lite (оптимизированный режим)")
         result_lines.append("")
         idx = 1
-        for (flag, country), lines in sorted(lite_by_country.items(), key=lambda x: x[0][1]):
-            result_lines.append(f"{flag} {country}")
-            for line in lines:
-                new_name = f"Lite #{idx:03d} {CHANNEL_TAG}"
-                new_line = re.sub(r'#.+$', f'#{new_name}', line)
-                result_lines.append(new_line)
-                idx += 1
-            result_lines.append("")
+        for line in lite_configs:
+            new_name = f"Lite #{idx:03d} {CHANNEL_TAG}"
+            new_line = re.sub(r'#.+$', f'#{new_name}', line)
+            result_lines.append(new_line)
+            idx += 1
+        result_lines.append("")
     
-    # Формируем Full раздел (без группировки по странам)
+    # Full раздел
     if full_configs:
         result_lines.append("🏴 Full (полный доступ)")
         result_lines.append("")
@@ -175,7 +135,7 @@ def main():
     with open('subscriptions/FreeCFGHub.txt', 'w', encoding='utf-8') as f:
         f.write(output_text)
     
-    # Сохраняем base64
+    # Сохраняем base64 (для обратной совместимости)
     if output_text.strip():
         b64 = base64.b64encode(output_text.encode('utf-8')).decode('utf-8')
         with open('subscriptions/all_base64.txt', 'w', encoding='utf-8') as f:
@@ -183,38 +143,6 @@ def main():
         print(f"✅ Сохранено {len(unique_configs)} ключей", flush=True)
         print(f"   Lite: {len(lite_configs)}, Full: {len(full_configs)}", flush=True)
     
-    # ========== СОЗДАЁМ JSON ДЛЯ БОТА ==========
-    # Группируем по странам для бота
-    lite_for_bot = defaultdict(list)
-    full_for_bot = defaultdict(list)
-    
-    for line in lite_configs:
-        match = re.search(r'#(.+)$', line)
-        if match:
-            name = match.group(1)
-            flag, country = extract_flag_and_country(name)
-            display = f"{flag} {country}"
-            lite_for_bot[display].append(line)
-    
-    for line in full_configs:
-        match = re.search(r'#(.+)$', line)
-        if match:
-            name = match.group(1)
-            flag, country = extract_flag_and_country(name)
-            display = f"{flag} {country}"
-            full_for_bot[display].append(line)
-        else:
-            full_for_bot["🌍 Неизвестно"].append(line)
-    
-    keys_by_country = {
-        "lite": dict(lite_for_bot),
-        "full": dict(full_for_bot)
-    }
-    
-    with open('subscriptions/keys_by_country.json', 'w', encoding='utf-8') as f:
-        json.dump(keys_by_country, f, ensure_ascii=False, indent=2)
-    
-    print("✅ keys_by_country.json создан", flush=True)
     print("✅ Готово", flush=True)
 
 if __name__ == '__main__':
