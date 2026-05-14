@@ -32,25 +32,26 @@ jobs:
               total = lite = full = 0
 
           text = (
-              f"🔄Обновление\n"
+              f"🔄 Обновление\n"
               f"Lite — {lite} | Full — {full}\n"
-              f"🆕Подписки при бс👇\n"
+              f"🆕 Подписки при бс👇\n"
               f"({total} ключей)\n"
               f"https://translate.yandex.ru/translate?url=https://raw.githubusercontent.com/Ilyacom4ik/free-v2ray-2026/refs/heads/main/subscriptions/FreeCFGHub1.txt\n"
               f"Все ключи\n"
               f"https://translate.yandex.ru/translate?url=https://raw.githubusercontent.com/Ilyacom4ik/vpn-keys/refs/heads/main/allkeysFreeCFGHub.txt\n"
-              f"Старые ссылки остается в том же темпе:👇\n"
+              f"Старые ссылки остаются в том же темпе:👇\n"
               f"https://raw.githubusercontent.com/Ilyacom4ik/free-v2ray-2026/refs/heads/main/subscriptions/FreeCFGHub1.txt\n"
               f"https://raw.githubusercontent.com/Ilyacom4ik/vpn-keys/refs/heads/main/allkeysFreeCFGHub.txt\n"
-              f"(❌НЕ ДОБАВЛЯЙТЕ В КЛИЕНТЫ:Happ,v2raytun,incy\n"
-              f"✅Лучше всего добавлять:V2rayNG,Exclave,Nekobox,Hiddify)\n"
-              f"⚠️Внимание!! Все ключи были взяты из разных источников,а также с моего репозитория на гитхабе, ключи не являются собственностью моего канала\n"
-              f"❗️Обновляйте подписку в своем клиенте\n"
+              f"(❌ НЕ ДОБАВЛЯЙТЕ В КЛИЕНТЫ: Happ,v2raytun,incy\n"
+              f"✅ Лучше всего добавлять: V2rayNG, Exclave, Nekobox, Hiddify)\n"
+              f"⚠️ Внимание!! Все ключи были взяты из разных источников, а также с моего репозитория на гитхабе, ключи не являются собственностью моего канала\n"
+              f"❗️ Обновляйте подписку в своем клиенте\n\n"
+              f"✨ <a href='https://t.me/FreeCFGHub/328'>Поддержать проект ✨</a>\n\n"
               f"👍 или 👎❓"
           )
 
           requests.post(
               f"https://api.telegram.org/bot{token}/sendMessage",
-              json={"chat_id": chat, "text": text}
+              json={"chat_id": chat, "text": text, "parse_mode": "HTML"}
           )
           EOF
