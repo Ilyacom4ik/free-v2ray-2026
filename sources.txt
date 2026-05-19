@@ -6,7 +6,6 @@ https://wlrus.lol/confs/blackl.txt
 https://raw.githubusercontent.com/zieng2/wl/main/vless_universal.txt
 https://raw.githubusercontent.com/ksenkovsolo/HardVPN-bypass-WhiteLists-/refs/heads/main/vpn-lte/best_good_renamed.txt
 https://mygala.ru/vpn/subscription.txt
-https://raw.githubusercontent.com/LimeHi/LimeVPNGenerator/main/Keys.txt?v=1
 https://airlinkvpn.github.io/1.txt
 https://raw.githubusercontent.com/LimeHi/LimeVPN/refs/heads/main/LimeVPN.txt
 https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-all.txt
@@ -22,3 +21,6 @@ https://rostunnel.vercel.app/mega.txt
 https://raw.githubusercontent.com/Maskkost93/kizyak-vpn-4.0/refs/heads/main/kizyakbeta6BL.txt
 https://etoneya.a9fm.site/whitelist
 https://raw.githubusercontent.com/RKPchannel/RKP_bypass_configs/refs/heads/main/configs/url_work.txt
+https://gitverse.ru/api/repos/bywarm/rser/raw/branch/master/selected.txt
+https://raw.githubusercontent.com/ByeWhiteLists/ByeWhiteLists2/refs/heads/main/ByeWhiteLists2.txt
+https://raw.githubusercontent.com/Temnuk/naabuzil/refs/heads/main/whitelist_full
