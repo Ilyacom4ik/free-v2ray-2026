@@ -1,9 +1,8 @@
-name: Update VPN Configs
+name: Update Configs
 on:
   schedule:
-    - cron: '0 */6 * * *'  # каждые 6 часов, поменяй под себя
+    - cron: '0 */2 * * *'
   workflow_dispatch:
-
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -20,12 +19,17 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install requests
-      - name: Run collector
+      - name: Run main.py
         run: python main.py
+      - name: Run parser.py
+        run: python parser.py
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add subscriptions/
+          git stash
+          git pull --rebase origin main
+          git stash pop
+          git add subscriptions/*
           git diff --staged --quiet || git commit -m "Auto update configs ${{ github.run_number }}"
           git push origin main
