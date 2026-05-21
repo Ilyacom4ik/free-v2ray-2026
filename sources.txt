@@ -26,3 +26,4 @@ https://raw.githubusercontent.com/ByeWhiteLists/ByeWhiteLists2/refs/heads/main/B
 https://raw.githubusercontent.com/Temnuk/naabuzil/refs/heads/main/whitelist_full
 https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt
 https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt
+https://raw.githubusercontent.com/VAL41K/bypass-rkn-blocks/refs/heads/main/configs/obhod_BL
