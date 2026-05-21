@@ -12,6 +12,8 @@ from urllib.parse import urlparse, parse_qs
 CHECK_TIMEOUT = 3
 CHECK_WORKERS = 100
 CHANNEL_TAG = "@FreeCFGHub"
+PROFILE_TITLE = "FreeCFGHub Lite"
+PROFILE_UPDATE_INTERVAL = 1
 
 def load_whitelist():
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'sni_whitelist.txt')
@@ -200,7 +202,9 @@ def main():
         named.append(new_line)
 
     os.makedirs('subscriptions', exist_ok=True)
-    output = '\n'.join(named)
+
+    header = f"#profile-title: {PROFILE_TITLE}\n#profile-update-interval: {PROFILE_UPDATE_INTERVAL}\n"
+    output = header + '\n'.join(named)
 
     with open('subscriptions/whitelist_keys.txt', 'w', encoding='utf-8') as f:
         f.write(output)
