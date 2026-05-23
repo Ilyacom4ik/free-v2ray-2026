@@ -96,14 +96,31 @@ def extract_sni(config):
         pass
     return None
 
+def is_cidr_key(config):
+    """Проверяет есть ли [*CIDR] в названии ключа"""
+    match = re.search(r'#(.+)$', config)
+    if match:
+        name = match.group(1)
+        return bool(re.search(r'\[\*CIDR\]', name, re.IGNORECASE))
+    return False
+
 def filter_by_sni(configs, whitelist):
     filtered = []
     no_sni = []
+    cidr_count = 0
+
     for config in configs:
+        # Ключи с [*CIDR] в названии сразу в Lite
+        if is_cidr_key(config):
+            filtered.append(config)
+            cidr_count += 1
+            continue
+
         sni = extract_sni(config)
         if sni is None:
             no_sni.append(config)
             continue
+
         parts = sni.split('.')
         matched = False
         for i in range(len(parts) - 1):
@@ -113,7 +130,9 @@ def filter_by_sni(configs, whitelist):
                 break
         if matched:
             filtered.append(config)
-    print(f"   С SNI из белого списка: {len(filtered)}")
+
+    print(f"   С SNI из белого списка: {len(filtered) - cidr_count}")
+    print(f"   С [*CIDR] в названии: {cidr_count}")
     print(f"   Без SNI параметра: {len(no_sni)}")
     return filtered
 
@@ -186,12 +205,11 @@ def main():
 
     print("🔍 Фильтрация по SNI...", flush=True)
     sni_filtered = filter_by_sni(unique_configs, whitelist)
-    print(f"✅ После SNI фильтра: {len(sni_filtered)}", flush=True)
+    print(f"✅ После фильтра: {len(sni_filtered)}", flush=True)
 
     alive = check_all_keys(sni_filtered)
     print(f"✅ Живых: {len(alive)} | ❌ Мёртвых: {len(sni_filtered) - len(alive)}", flush=True)
 
-    # Добавляем префикс
     named = []
     for idx, line in enumerate(alive, 1):
         new_name = f"Lite #{idx:03d} {CHANNEL_TAG}"
