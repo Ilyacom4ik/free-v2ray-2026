@@ -289,7 +289,6 @@ def check_all_keys(configs):
 def is_lite_by_domain(config):
     """
     Проверяет, содержит ли конфиг маршрутизацию по доменам из белого списка.
-    Ищет домены из LITE_DOMAINS в названии (#...) или в самом URI.
     """
     config_lower = config.lower()
     for domain in LITE_DOMAINS:
@@ -298,7 +297,7 @@ def is_lite_by_domain(config):
     match = re.search(r'#(.+)$', config)
     if match:
         name = match.group(1)
-        for pattern in [r'Lite', r'Белые?\s*списки?', r'White\s*List', r'\bWL\b', r'\[.*CIDR.*\]']:
+        for pattern in [r'Lite', r'LTE', r'Белые?\s*списки?', r'White\s*List', r'\bWL\b', r'\[.*CIDR.*\]']:
             if re.search(pattern, name, re.IGNORECASE):
                 return True
     return False
@@ -340,17 +339,9 @@ def main():
     alive_configs = check_all_keys(unique_configs)
     print(
         f"✅ Живых: {len(alive_configs)} | "
-        f"❌ Мёртвых: {len(unique_configs) - len(alive_configs)}",
+        f"❌ Мертвых: {len(unique_configs) - len(alive_configs)}",
         flush=True
     )
-
-    # Определяем страны для живых ключей (опционально, просто для отладки)
-    print("🌍 Определение стран по IP...", flush=True)
-    for cfg in alive_configs[:10]:  # только первые 10, чтобы не спамить
-        host = extract_host_from_config(cfg)
-        if host:
-            country = get_country_by_ip(host)
-            print(f"   {host} -> {country}", flush=True)
 
     # Разделяем на LTE / Full по доменам белого списка
     lite_configs = []
@@ -363,24 +354,34 @@ def main():
 
     result_lines = []
 
-    # ── LTE (бывшие Lite) ──
+    # ── LTE с указанием страны и флага ──
     if lite_configs:
         result_lines.append("🏳️ LTE (оптимизированный режим)")
         result_lines.append("")
         for idx, line in enumerate(lite_configs, start=1):
-            new_name = f"LTE #{idx:03d} {CHANNEL_TAG}"
+            host = extract_host_from_config(line)
+            if host:
+                country = get_country_by_ip(host)
+            else:
+                country = "🌍 Неизвестно"
+            new_name = f"LTE {country} #{idx:03d} {CHANNEL_TAG}"
             new_line = re.sub(r'#.+$', f'#{new_name}', line)
             if '#' not in line:
                 new_line = f"{line}#{new_name}"
             result_lines.append(new_line)
         result_lines.append("")
 
-    # ── Full (оставляем как есть) ──
+    # ── Full с указанием страны и флага ──
     if full_configs:
         result_lines.append("🏴 Full (полный доступ)")
         result_lines.append("")
         for idx, line in enumerate(full_configs, start=1):
-            new_name = f"Full #{idx:03d} {CHANNEL_TAG}"
+            host = extract_host_from_config(line)
+            if host:
+                country = get_country_by_ip(host)
+            else:
+                country = "🌍 Неизвестно"
+            new_name = f"Full {country} #{idx:03d} {CHANNEL_TAG}"
             new_line = re.sub(r'#.+$', f'#{new_name}', line)
             if '#' not in line:
                 new_line = f"{line}#{new_name}"
@@ -408,3 +409,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
