@@ -17,7 +17,27 @@ CHECK_TIMEOUT = 5
 CHECK_WORKERS = 50
 
 # ═══════════════════════════════════════════════════════
-#              БЕЛЫЙ СПИСОК ДОМЕНОВ ДЛЯ LITE
+#              ПОЛНЫЙ СЛОВАРЬ ФЛАГОВ (ВСЕ СТРАНЫ)
+# ═══════════════════════════════════════════════════════
+FLAGS = {
+    "ru": "🇷🇺", "nl": "🇳🇱", "us": "🇺🇸", "de": "🇩🇪",
+    "fi": "🇫🇮", "fr": "🇫🇷", "gb": "🇬🇧", "ca": "🇨🇦",
+    "jp": "🇯🇵", "sg": "🇸🇬", "ro": "🇷🇴", "ae": "🇦🇪",
+    "pl": "🇵🇱", "it": "🇮🇹", "es": "🇪🇸", "se": "🇸🇪",
+    "no": "🇳🇴", "dk": "🇩🇰", "be": "🇧🇪", "at": "🇦🇹",
+    "ch": "🇨🇭", "cz": "🇨🇿", "gr": "🇬🇷", "pt": "🇵🇹",
+    "hu": "🇭🇺", "tr": "🇹🇷", "il": "🇮🇱", "in": "🇮🇳",
+    "br": "🇧🇷", "au": "🇦🇺", "nz": "🇳🇿", "za": "🇿🇦",
+    "ie": "🇮🇪", "lu": "🇱🇺", "ua": "🇺🇦", "by": "🇧🇾",
+    "lt": "🇱🇹", "lv": "🇱🇻", "ee": "🇪🇪", "bg": "🇧🇬",
+    "rs": "🇷🇸", "hr": "🇭🇷", "si": "🇸🇮", "sk": "🇸🇰",
+    "cn": "🇨🇳", "hk": "🇭🇰", "kr": "🇰🇷", "vn": "🇻🇳",
+    "th": "🇹🇭", "my": "🇲🇾", "id": "🇮🇩", "ph": "🇵🇭",
+    "mx": "🇲🇽", "ar": "🇦🇷", "cl": "🇨🇱", "co": "🇨🇴"
+}
+
+# ═══════════════════════════════════════════════════════
+#              БЕЛЫЙ СПИСОК ДОМЕНОВ ДЛЯ LTE
 # ═══════════════════════════════════════════════════════
 
 LITE_DOMAINS = {
@@ -139,6 +159,35 @@ LITE_DOMAINS = {
 #                  ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
 # ═══════════════════════════════════════════════════════
 
+def get_country_by_ip(ip):
+    """Определяет страну по IP через API"""
+    try:
+        r = requests.get(f"http://ip-api.com/json/{ip}?fields=status,countryCode,country", timeout=5)
+        if r.status_code == 200:
+            data = r.json()
+            if data.get("status") == "success":
+                cc = data.get("countryCode", "").lower()
+                flag = FLAGS.get(cc, "🌍")
+                return f"{data.get('country', 'Неизвестно')} {flag}"
+        return "🌍 Неизвестно"
+    except:
+        return "🌍 Неизвестно"
+
+def extract_host_from_config(config):
+    """Извлекает IP/домен из конфига"""
+    match = re.search(r'://[^@]+@([^:]+):', config)
+    if match:
+        return match.group(1)
+    if config.startswith('vmess://'):
+        try:
+            import json
+            decoded = base64.b64decode(config[8:]).decode('utf-8')
+            data = json.loads(decoded)
+            return data.get('add')
+        except:
+            return None
+    return None
+
 def is_valid_config(line):
     return bool(re.match(r'^(vless|vmess|trojan|hysteria2|ss|tuic)://', line.strip()))
 
@@ -246,7 +295,6 @@ def is_lite_by_domain(config):
     for domain in LITE_DOMAINS:
         if domain.lower() in config_lower:
             return True
-    # Дополнительно проверяем по старым ключевым словам в названии
     match = re.search(r'#(.+)$', config)
     if match:
         name = match.group(1)
@@ -296,7 +344,15 @@ def main():
         flush=True
     )
 
-    # Разделяем на Lite / Full по доменам белого списка
+    # Определяем страны для живых ключей (опционально, просто для отладки)
+    print("🌍 Определение стран по IP...", flush=True)
+    for cfg in alive_configs[:10]:  # только первые 10, чтобы не спамить
+        host = extract_host_from_config(cfg)
+        if host:
+            country = get_country_by_ip(host)
+            print(f"   {host} -> {country}", flush=True)
+
+    # Разделяем на LTE / Full по доменам белого списка
     lite_configs = []
     full_configs = []
     for line in alive_configs:
@@ -307,19 +363,19 @@ def main():
 
     result_lines = []
 
-    # ── Lite — без сортировки по странам ──
+    # ── LTE (бывшие Lite) ──
     if lite_configs:
-        result_lines.append("🏳️ Lite (оптимизированный режим)")
+        result_lines.append("🏳️ LTE (оптимизированный режим)")
         result_lines.append("")
         for idx, line in enumerate(lite_configs, start=1):
-            new_name = f"Lite #{idx:03d} {CHANNEL_TAG}"
+            new_name = f"LTE #{idx:03d} {CHANNEL_TAG}"
             new_line = re.sub(r'#.+$', f'#{new_name}', line)
             if '#' not in line:
                 new_line = f"{line}#{new_name}"
             result_lines.append(new_line)
         result_lines.append("")
 
-    # ── Full — без сортировки по странам ──
+    # ── Full (оставляем как есть) ──
     if full_configs:
         result_lines.append("🏴 Full (полный доступ)")
         result_lines.append("")
@@ -346,7 +402,7 @@ def main():
         print("💾 Записан subscriptions/all_base64.txt", flush=True)
 
     print(
-        f"✅ Готово | Lite: {len(lite_configs)} | Full: {len(full_configs)}",
+        f"✅ Готово | LTE: {len(lite_configs)} | Full: {len(full_configs)}",
         flush=True
     )
 
