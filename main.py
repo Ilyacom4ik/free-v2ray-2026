@@ -247,45 +247,6 @@ def deduplicate(configs):
                 unique.append(config)
     return unique
 
-def parse_host_port(config):
-    try:
-        clean = config.split('#')[0].strip()
-        parsed = urlparse(clean)
-        return parsed.hostname, parsed.port
-    except Exception:
-        return None, None
-
-def check_key(config):
-    host, port = parse_host_port(config)
-    if not host or not port:
-        return False
-    try:
-        sock = socket.create_connection((host, port), timeout=CHECK_TIMEOUT)
-        sock.close()
-        return True
-    except (socket.timeout, ConnectionRefusedError, OSError):
-        return False
-
-def check_all_keys(configs):
-    alive = []
-    total = len(configs)
-    done = 0
-    print(f"🔍 Проверка {total} ключей (потоков: {CHECK_WORKERS}, таймаут: {CHECK_TIMEOUT}s)...", flush=True)
-    with ThreadPoolExecutor(max_workers=CHECK_WORKERS) as executor:
-        future_to_config = {executor.submit(check_key, cfg): cfg for cfg in configs}
-        for future in as_completed(future_to_config):
-            cfg = future_to_config[future]
-            done += 1
-            try:
-                ok = future.result()
-            except Exception:
-                ok = False
-            if ok:
-                alive.append(cfg)
-            if done % 50 == 0 or done == total:
-                print(f"   [{done}/{total}] живых: {len(alive)}", flush=True)
-    return alive
-
 def is_lite_by_domain(config):
     """
     Проверяет, содержит ли конфиг маршрутизацию по доменам из белого списка.
@@ -335,13 +296,9 @@ def main():
         flush=True
     )
 
-    # Проверка живых
-    alive_configs = check_all_keys(unique_configs)
-    print(
-        f"✅ Живых: {len(alive_configs)} | "
-        f"❌ Мертвых: {len(unique_configs) - len(alive_configs)}",
-        flush=True
-    )
+    # Пропускаем проверку ключей (было закомментировано)
+    alive_configs = unique_configs
+    print(f"✅ Взято ключей без проверки: {len(alive_configs)}", flush=True)
 
     # Разделяем на LTE / Full по доменам белого списка
     lite_configs = []
@@ -409,4 +366,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
