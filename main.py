@@ -5,16 +5,11 @@ import requests
 import base64
 import re
 import os
-import socket
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from collections import defaultdict
 from urllib.parse import urlparse
 
 print("DEBUG: скрипт запущен", flush=True)
 
 CHANNEL_TAG = "@FreeCFGHub"
-CHECK_TIMEOUT = 5
-CHECK_WORKERS = 50
 
 # ═══════════════════════════════════════════════════════
 #              БЕЛЫЙ СПИСОК ДОМЕНОВ ДЛЯ LTE
@@ -198,45 +193,6 @@ def deduplicate(configs):
                 unique.append(config)
     return unique
 
-def parse_host_port(config):
-    try:
-        clean = config.split('#')[0].strip()
-        parsed = urlparse(clean)
-        return parsed.hostname, parsed.port
-    except Exception:
-        return None, None
-
-def check_key(config):
-    host, port = parse_host_port(config)
-    if not host or not port:
-        return False
-    try:
-        sock = socket.create_connection((host, port), timeout=CHECK_TIMEOUT)
-        sock.close()
-        return True
-    except (socket.timeout, ConnectionRefusedError, OSError):
-        return False
-
-def check_all_keys(configs):
-    alive = []
-    total = len(configs)
-    done = 0
-    print(f"🔍 Проверка {total} ключей (потоков: {CHECK_WORKERS}, таймаут: {CHECK_TIMEOUT}s)...", flush=True)
-    with ThreadPoolExecutor(max_workers=CHECK_WORKERS) as executor:
-        future_to_config = {executor.submit(check_key, cfg): cfg for cfg in configs}
-        for future in as_completed(future_to_config):
-            cfg = future_to_config[future]
-            done += 1
-            try:
-                ok = future.result()
-            except Exception:
-                ok = False
-            if ok:
-                alive.append(cfg)
-            if done % 50 == 0 or done == total:
-                print(f"   [{done}/{total}] живых: {len(alive)}", flush=True)
-    return alive
-
 def is_lite_by_domain(config):
     """
     Проверяет, содержит ли конфиг маршрутизацию по доменам из белого списка.
@@ -286,18 +242,10 @@ def main():
         flush=True
     )
 
-    # Проверка живых
-    alive_configs = check_all_keys(unique_configs)
-    print(
-        f"✅ Живых: {len(alive_configs)} | "
-        f"❌ Мёртвых: {len(unique_configs) - len(alive_configs)}",
-        flush=True
-    )
-
     # Разделяем на LTE / Full по доменам белого списка
     lite_configs = []
     full_configs = []
-    for line in alive_configs:
+    for line in unique_configs:
         if is_lite_by_domain(line):
             lite_configs.append(line)
         else:
@@ -305,7 +253,7 @@ def main():
 
     result_lines = []
 
-    # ── LTE (без страны) ──
+    # ── LTE ──
     if lite_configs:
         result_lines.append("🏳️ LTE (оптимизированный режим)")
         result_lines.append("")
@@ -317,7 +265,7 @@ def main():
             result_lines.append(new_line)
         result_lines.append("")
 
-    # ── Full (без страны) ──
+    # ── Full ──
     if full_configs:
         result_lines.append("🏴 Full (полный доступ)")
         result_lines.append("")
