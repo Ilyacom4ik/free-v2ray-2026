@@ -17,26 +17,6 @@ CHECK_TIMEOUT = 5
 CHECK_WORKERS = 50
 
 # ═══════════════════════════════════════════════════════
-#              ПОЛНЫЙ СЛОВАРЬ ФЛАГОВ (ВСЕ СТРАНЫ)
-# ═══════════════════════════════════════════════════════
-FLAGS = {
-    "ru": "🇷🇺", "nl": "🇳🇱", "us": "🇺🇸", "de": "🇩🇪",
-    "fi": "🇫🇮", "fr": "🇫🇷", "gb": "🇬🇧", "ca": "🇨🇦",
-    "jp": "🇯🇵", "sg": "🇸🇬", "ro": "🇷🇴", "ae": "🇦🇪",
-    "pl": "🇵🇱", "it": "🇮🇹", "es": "🇪🇸", "se": "🇸🇪",
-    "no": "🇳🇴", "dk": "🇩🇰", "be": "🇧🇪", "at": "🇦🇹",
-    "ch": "🇨🇭", "cz": "🇨🇿", "gr": "🇬🇷", "pt": "🇵🇹",
-    "hu": "🇭🇺", "tr": "🇹🇷", "il": "🇮🇱", "in": "🇮🇳",
-    "br": "🇧🇷", "au": "🇦🇺", "nz": "🇳🇿", "za": "🇿🇦",
-    "ie": "🇮🇪", "lu": "🇱🇺", "ua": "🇺🇦", "by": "🇧🇾",
-    "lt": "🇱🇹", "lv": "🇱🇻", "ee": "🇪🇪", "bg": "🇧🇬",
-    "rs": "🇷🇸", "hr": "🇭🇷", "si": "🇸🇮", "sk": "🇸🇰",
-    "cn": "🇨🇳", "hk": "🇭🇰", "kr": "🇰🇷", "vn": "🇻🇳",
-    "th": "🇹🇭", "my": "🇲🇾", "id": "🇮🇩", "ph": "🇵🇭",
-    "mx": "🇲🇽", "ar": "🇦🇷", "cl": "🇨🇱", "co": "🇨🇴"
-}
-
-# ═══════════════════════════════════════════════════════
 #              БЕЛЫЙ СПИСОК ДОМЕНОВ ДЛЯ LTE
 # ═══════════════════════════════════════════════════════
 
@@ -159,35 +139,6 @@ LITE_DOMAINS = {
 #                  ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
 # ═══════════════════════════════════════════════════════
 
-def get_country_by_ip(ip):
-    """Определяет страну по IP через API"""
-    try:
-        r = requests.get(f"http://ip-api.com/json/{ip}?fields=status,countryCode,country", timeout=5)
-        if r.status_code == 200:
-            data = r.json()
-            if data.get("status") == "success":
-                cc = data.get("countryCode", "").lower()
-                flag = FLAGS.get(cc, "🌍")
-                return f"{data.get('country', 'Неизвестно')} {flag}"
-        return "🌍 Неизвестно"
-    except:
-        return "🌍 Неизвестно"
-
-def extract_host_from_config(config):
-    """Извлекает IP/домен из конфига"""
-    match = re.search(r'://[^@]+@([^:]+):', config)
-    if match:
-        return match.group(1)
-    if config.startswith('vmess://'):
-        try:
-            import json
-            decoded = base64.b64decode(config[8:]).decode('utf-8')
-            data = json.loads(decoded)
-            return data.get('add')
-        except:
-            return None
-    return None
-
 def is_valid_config(line):
     return bool(re.match(r'^(vless|vmess|trojan|hysteria2|ss|tuic)://', line.strip()))
 
@@ -247,6 +198,45 @@ def deduplicate(configs):
                 unique.append(config)
     return unique
 
+def parse_host_port(config):
+    try:
+        clean = config.split('#')[0].strip()
+        parsed = urlparse(clean)
+        return parsed.hostname, parsed.port
+    except Exception:
+        return None, None
+
+def check_key(config):
+    host, port = parse_host_port(config)
+    if not host or not port:
+        return False
+    try:
+        sock = socket.create_connection((host, port), timeout=CHECK_TIMEOUT)
+        sock.close()
+        return True
+    except (socket.timeout, ConnectionRefusedError, OSError):
+        return False
+
+def check_all_keys(configs):
+    alive = []
+    total = len(configs)
+    done = 0
+    print(f"🔍 Проверка {total} ключей (потоков: {CHECK_WORKERS}, таймаут: {CHECK_TIMEOUT}s)...", flush=True)
+    with ThreadPoolExecutor(max_workers=CHECK_WORKERS) as executor:
+        future_to_config = {executor.submit(check_key, cfg): cfg for cfg in configs}
+        for future in as_completed(future_to_config):
+            cfg = future_to_config[future]
+            done += 1
+            try:
+                ok = future.result()
+            except Exception:
+                ok = False
+            if ok:
+                alive.append(cfg)
+            if done % 50 == 0 or done == total:
+                print(f"   [{done}/{total}] живых: {len(alive)}", flush=True)
+    return alive
+
 def is_lite_by_domain(config):
     """
     Проверяет, содержит ли конфиг маршрутизацию по доменам из белого списка.
@@ -296,9 +286,13 @@ def main():
         flush=True
     )
 
-    # Пропускаем проверку ключей (было закомментировано)
-    alive_configs = unique_configs
-    print(f"✅ Взято ключей без проверки: {len(alive_configs)}", flush=True)
+    # Проверка живых
+    alive_configs = check_all_keys(unique_configs)
+    print(
+        f"✅ Живых: {len(alive_configs)} | "
+        f"❌ Мёртвых: {len(unique_configs) - len(alive_configs)}",
+        flush=True
+    )
 
     # Разделяем на LTE / Full по доменам белого списка
     lite_configs = []
@@ -311,34 +305,24 @@ def main():
 
     result_lines = []
 
-    # ── LTE с указанием страны и флага ──
+    # ── LTE (без страны) ──
     if lite_configs:
         result_lines.append("🏳️ LTE (оптимизированный режим)")
         result_lines.append("")
         for idx, line in enumerate(lite_configs, start=1):
-            host = extract_host_from_config(line)
-            if host:
-                country = get_country_by_ip(host)
-            else:
-                country = "🌍 Неизвестно"
-            new_name = f"LTE {country} #{idx:03d} {CHANNEL_TAG}"
+            new_name = f"LTE #{idx:03d} {CHANNEL_TAG}"
             new_line = re.sub(r'#.+$', f'#{new_name}', line)
             if '#' not in line:
                 new_line = f"{line}#{new_name}"
             result_lines.append(new_line)
         result_lines.append("")
 
-    # ── Full с указанием страны и флага ──
+    # ── Full (без страны) ──
     if full_configs:
         result_lines.append("🏴 Full (полный доступ)")
         result_lines.append("")
         for idx, line in enumerate(full_configs, start=1):
-            host = extract_host_from_config(line)
-            if host:
-                country = get_country_by_ip(host)
-            else:
-                country = "🌍 Неизвестно"
-            new_name = f"Full {country} #{idx:03d} {CHANNEL_TAG}"
+            new_name = f"Full #{idx:03d} {CHANNEL_TAG}"
             new_line = re.sub(r'#.+$', f'#{new_name}', line)
             if '#' not in line:
                 new_line = f"{line}#{new_name}"
