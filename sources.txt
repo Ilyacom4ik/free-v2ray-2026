@@ -27,3 +27,7 @@ https://raw.githubusercontent.com/Temnuk/naabuzil/refs/heads/main/whitelist_full
 https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt
 https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt
 https://raw.githubusercontent.com/VAL41K/bypass-rkn-blocks/refs/heads/main/configs/obhod_BL
+https://raw.githubusercontent.com/TseYaProject/TseYaProject.github.io/refs/heads/main/whitelist
+https://tseya.a9fm.site/other
+https://cdn.jsdelivr.net/gh/EtoNeYaProject/EtoNeYaProject.github.io@refs/heads/main/other
+https://raw.githubusercontent.com/EtoNeYaProject/etoneyaproject.github.io/refs/heads/main/ytm
