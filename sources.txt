@@ -1,2 +1,4 @@
-
 https://raw.githubusercontent.com/solovyov-jenya2004/all_subs/refs/heads/main/final_sorted
+https://raw.githubusercontent.com/ShadowException/VPN/refs/heads/main/configs/VPN-cat
+https://raw.githubusercontent.com/Ai123999/1Mond/refs/heads/main/1Mond_Notorgamers
+https://internet-tenshi.kangel.tech/whitelist
