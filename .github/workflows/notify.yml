@@ -22,7 +22,7 @@ jobs:
           token = os.environ['TG_BOT_TOKEN']
           chat = os.environ['TG_CHAT_ID']
 
-          text = "✔ Обновил подписки\n\n🤖 Бот для выдачи подписок и ключей: @FreeCFGHubBott_bot\n\n💬 По вопросам и проблемам: @FreeCFGHubMIX"
+          text = "✔ Обновил подписки\n\n🔄 В ближайшее время появится отдельный бот для бесплатных подписок и ключей.\n\n💎 Платная подписка — тоже в разработке.\n\n💬 По вопросам и проблемам: @FreeCFGHubMIX"
 
           requests.post(
               f"https://api.telegram.org/bot{token}/sendMessage",
