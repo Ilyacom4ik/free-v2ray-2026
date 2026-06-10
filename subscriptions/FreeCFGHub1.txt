@@ -1,7 +1,5 @@
 #profile-update-interval: 1
 #profile-title: 🕊FreeCFGHub
-🏳️ LTE (оптимизированный режим)
-
 vless://b5d7c7ad-850f-4f80-8621-7c863eff1b49@bypass.br-m247-01.com:8443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=rbc.ru&fp=chrome&pbk=_0HnraldEtXmJMu7t3nEm8VmQXkMWF7dX1Dmz5KceSw&sid=57f5917841a2178f&type=tcp&headerType=none#LTE 🇧🇷 #001 @FreeCFGHub
 vless://512f01f4-d8fc-4a78-96a0-5d9ebebe35b9@bypass.de-dp-01.com:8443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=storage.yandex.net&fp=firefox&pbk=ISa-DZOI4LRRb9DHMFYm5oFqBXDjYzz0hVWUfWvzLmo&sid=5be97fb85093a3a9&type=tcp&headerType=none#LTE 🇩🇪 #002 @FreeCFGHub
 vless://8bbf020e-653f-4a82-9900-1214e4e37dab@45.91.55.234:7443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=rutube.ru&fp=firefox&pbk=5QAO98ot2U7TcGs_f6EEaQjCzNOJLNHqPf6smYsdFVI&sid=be0ce047&type=tcp&headerType=none#LTE 🇲🇩 #003 @FreeCFGHub
@@ -18,9 +16,6 @@ vless://9f5ce1f6-d223-4f80-b848-72b7d662f189@51.250.108.107:443?encryption=none&
 vless://443211c6-8ebb-4676-b796-f3a3a94c38a6@37.9.4.147:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=max.ru&fp=firefox&pbk=yp2vFOv-6UbPxYnCbjsQGbOoU5bhr7bjdzkhGo7fen0&sid=f3cb3c2f7790bc8f&type=tcp&headerType=none#LTE 🇷🇺 #014 @FreeCFGHub
 vless://0a12381a-e241-4b63-a03c-1a5a45a95977@185.86.147.210:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=download.max.ru&fp=firefox&pbk=uAEnruG3uui3vI_hofiVrBFbRiLM-DKKWYTnZdj8lDE&sid=bed02b4a35bf1142&type=tcp&headerType=none#LTE 🇷🇺 #015 @FreeCFGHub
 vless://bff7b258-8291-4298-bdee-991a92c1f33c@45.195.137.252:8443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=storage.yandex.net&fp=firefox&pbk=IdqrygjwHBEMCOamBl7a504TVk6uMAtTRj0xLWcFcxY&sid=40ce08cf20c67003&type=tcp&headerType=none#LTE 🇹🇷 #016 @FreeCFGHub
-
-🏴 FULL (полный доступ)
-
 vless://9e5201b2-5061-413b-b310-36cc6ec590c6@31.56.188.85:8443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=vk.ru&fp=firefox&pbk=QGlJtT7TdXFaIctNpsvykWqAgTR3VCq3Z0H94-QKHDc&type=tcp&headerType=none#FULL 🇦🇪 #001 @FreeCFGHub
 vless://9e5201b2-5061-413b-b310-36cc6ec590c6@31.56.188.85:8443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=vk.ru&fp=firefox&pbk=QGlJtT7TdXFaIctNpsvykWqAgTR3VCq3Z0H94-QKHDc&type=tcp&headerType=none#FULL 🇦🇪 #002 @FreeCFGHub
 vless://9e5201b2-5061-413b-b310-36cc6ec590c6@31.56.188.85:8443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=vk.ru&fp=firefox&pbk=QGlJtT7TdXFaIctNpsvykWqAgTR3VCq3Z0H94-QKHDc&type=tcp&headerType=none#FULL 🇦🇪 #003 @FreeCFGHub
