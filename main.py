@@ -11,9 +11,6 @@ print("DEBUG: скрипт запущен", flush=True)
 
 CHANNEL_TAG = "@FreeCFGHub"
 
-# ═══════════════════════════════════════════════════════
-#              БЕЛЫЙ СПИСОК ДОМЕНОВ ДЛЯ LITE
-# ═══════════════════════════════════════════════════════
 
 LITE_DOMAINS = {
     "sochisirius.ru", "edu.sirius.online", "storage0.sirius.online",
