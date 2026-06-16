@@ -12,7 +12,7 @@ print("DEBUG: скрипт запущен", flush=True)
 CHANNEL_TAG = "@FreeCFGHub"
 
 # ═══════════════════════════════════════════════════════
-#              БЕЛЫЙ СПИСОК ДОМЕНОВ ДЛЯ LTE
+#              БЕЛЫЙ СПИСОК ДОМЕНОВ ДЛЯ LITE
 # ═══════════════════════════════════════════════════════
 
 LITE_DOMAINS = {
@@ -242,7 +242,7 @@ def main():
         flush=True
     )
 
-    # Разделяем на LTE / Full по доменам белого списка
+    # Разделяем на Lite / Full по доменам белого списка
     lite_configs = []
     full_configs = []
     for line in unique_configs:
@@ -253,12 +253,12 @@ def main():
 
     result_lines = []
 
-    # ── LTE ──
+    # ── Lite ──
     if lite_configs:
-        result_lines.append("🏳️ LTE (оптимизированный режим)")
+        result_lines.append("🏳️ Lite (оптимизированный режим)")
         result_lines.append("")
         for idx, line in enumerate(lite_configs, start=1):
-            new_name = f"LTE #{idx:03d} {CHANNEL_TAG}"
+            new_name = f"Lite #{idx:03d} {CHANNEL_TAG}"
             new_line = re.sub(r'#.+$', f'#{new_name}', line)
             if '#' not in line:
                 new_line = f"{line}#{new_name}"
@@ -292,7 +292,7 @@ def main():
         print("💾 Записан subscriptions/all_base64.txt", flush=True)
 
     print(
-        f"✅ Готово | LTE: {len(lite_configs)} | Full: {len(full_configs)}",
+        f"✅ Готово | Lite: {len(lite_configs)} | Full: {len(full_configs)}",
         flush=True
     )
 
