@@ -18,17 +18,69 @@ jobs:
         run: |
           python - <<'EOF'
           import os, requests
+          import re
 
           token = os.environ['TG_BOT_TOKEN']
           chat = os.environ['TG_CHAT_ID']
 
-          text = "✔ Обновил подписки\n\n🤖 Бот @FreeCFGHubbot — уже работает, забирайте ключи и подписки.\n\n💎 Платная подписка — в разработке. Скоро будет доступна.\n\n💬 По вопросам и проблемам: @FreeCFGHubMIX"
+          def count_keys_in_file(url):
+              try:
+                  r = requests.get(url, timeout=15)
+                  if r.status_code != 200:
+                      return None, None
+                  lines = r.text.splitlines()
+                  total = 0
+                  lite = 0
+                  full = 0
+                  for line in lines:
+                      line = line.strip()
+                      if not line or line.startswith('#'):
+                          continue
+                      if re.match(r'^(vless|vmess|trojan|ss|tuic|hysteria2)://', line):
+                          total += 1
+                          if re.search(r'\bLite\b', line, re.IGNORECASE):
+                              lite += 1
+                          else:
+                              full += 1
+                  return total, lite, full
+              except:
+                  return None, None, None
+
+          # Малая подписка
+          small_total, small_lite, small_full = count_keys_in_file(
+              "https://raw.githubusercontent.com/Ilyacom4ik/free-v2ray-2026/refs/heads/main/subscriptions/FreeCFGHub1.txt"
+          )
+
+          # Большая подписка
+          big_total, big_lite, big_full = count_keys_in_file(
+              "https://raw.githubusercontent.com/Ilyacom4ik/vpn-keys/refs/heads/main/allkeysFreeCFGHub.txt"
+          )
+
+          # Формируем текст
+          text = "✔ Обновил подписки\n\n"
+
+          if small_total is not None:
+              text += f"📦 <b>Малая подписка:</b>\n"
+              text += f"   Всего: {small_total} | Lite: {small_lite} | Full: {small_full}\n\n"
+          else:
+              text += f"⚠️ Малая подписка временно недоступна\n\n"
+
+          if big_total is not None:
+              text += f"🗂 <b>Большая подписка:</b>\n"
+              text += f"   Всего: {big_total} | Lite: {big_lite} | Full: {big_full}\n\n"
+          else:
+              text += f"⚠️ Большая подписка временно недоступна\n\n"
+
+          text += "🤖 Бот @FreeCFGHubbot — уже работает, забирайте ключи и подписки.\n"
+          text += "💎 Платная подписка — в разработке. Скоро будет доступна.\n"
+          text += "💬 По вопросам и проблемам: @FreeCFGHubMIX"
 
           requests.post(
               f"https://api.telegram.org/bot{token}/sendMessage",
               json={
                   "chat_id": chat,
                   "text": text,
+                  "parse_mode": "HTML",
                   "reply_markup": {
                       "inline_keyboard": [
                           [{"text": "✨ Поддержать канал", "url": "https://pay.cloudtips.ru/p/2486fa1a"}]
