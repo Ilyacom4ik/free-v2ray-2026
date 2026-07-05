@@ -32,4 +32,4 @@ vless://72edcaa1-685e-4022-9576-273746529e1f@78.159.245.45:25565?encryption=none
 hysteria2://cb887032-0447-4216-be3c-7333ecdcda9a@46.17.40.117:50045?sni=music.apple.com&insecure=1&allowInsecure=1#Full 🇷🇺 #022 @FreeCFGHub
 hysteria2://a8a5b34d-fe46-487d-bd6a-d9f3101525fd@46.17.40.117:51385?sni=music.apple.com&insecure=1&allowInsecure=1#Full 🇷🇺 #023 @FreeCFGHub
 hysteria2://73ffcd12-0155-432f-9fd4-c1d2bf9190d7@46.17.40.117:51857?sni=music.apple.com&insecure=1&allowInsecure=1#Full 🇷🇺 #024 @FreeCFGHub
-vless://0d9cc99b-d11a-43b8-8613-dc8ef04a326b@54.167.105.123:2053?encryption=none&security=reality&sni=www.inel.com&fp=chrome&pbk=-dvaet5vTdRvWpkf_1wY2HcWuHDMHK_A_19tUq3QQRQ&sid=a8434c33&spx=%2Ff6jRSVG0fvHWE7y&type=tcp&headerType=none#Full 🇺🇸 #025 @FreeCFGHub
+vless://0d9cc99b-d11a-43b8-8613-dc8ef04a326b@54.167.105.123:2053?encryption=none&security=reality&sni=www.inel.com&fp=chrome&pbk=-dvaet5vTdRvWpkf_1wY2HcWuHDMHK_A_19tUq3QQRQ&sid=a8434c33&spx=%2Ff6jRSVG0fvHWE7y&type=tcp&headerType=none#Full 🇺🇸 #025 @FreeCFGHub 
